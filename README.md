@@ -1,8 +1,13 @@
 # Siteweb realisé grace a la template cardio
+
 Site web pour le projet S2
+
 Pour tout information relative dessus merci de nous contacer via Discord.
+
 Credtis et info d'utilisation ci-dessous.
+
 ***
+
 ## "Cardio" One Page Website Template
 
 "Cardio" is a one page website template made by [PHIr](http://www.phir.co/) exclusively for Codrops.

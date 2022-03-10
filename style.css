@@ -20,6 +20,7 @@ body
 }
 #h1
 {
+	user-select: none;
 	font-size: 75px;
 	color: white;
 	width: 100%;
@@ -32,19 +33,34 @@ body
 	margin: auto;
 	max-width: 100%;
 	max-height: 100%;
-	overflow: auto;
+	/*overflow: hidden;*/
 }
+/*
+.outline
+{
+	
+	clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+	background-color: red;
+	z-index: 2;
+}
+.outline.root
+{
+	
+	z-index: 0;
+}
+*/
 .diamonds:not(.null.active:not(#root))
 {
 	clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
 	position: fixed;
+	outline: red inset 10px;
 }
 #root
 {
 	width: calc(var(--width)*var(--active-d-scale));
 	height: calc(var(--height)*var(--active-d-scale));
 	transform: translate( calc( (-1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
-	z-index: 0;
+	z-index: 1;
 	background-color: var(--main-color);
 }
 .sub-active:not(#root)
@@ -55,9 +71,22 @@ body
 	/*transform: translate( calc( (-1/2) * ( var(--width) * var(--sub-active-d-scale) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--sub-active-d-scales) - var(--height) ) ) );
 	*/	
 	pointer-events: all;
-	z-index: 1;
+	z-index: 3;
 	/*transform-origin: 0 0;*/
 }
+
+.sub-active:not(#root):hover
+{
+	position: absolute;
+	/*width: calc(var(--width)/2*var(--sub-active-d-scale) * 1.2);
+	height: calc(var(--height)/2*var(--sub-active-d-scale) * 1.2);*/
+	/*transform: translate( calc( (-1/2) * ( var(--width) * var(--sub-active-d-scale) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--sub-active-d-scales) - var(--height) ) ) );
+	*/	
+	pointer-events: all;
+	z-index: 3;
+	/*transform-origin: 0 0;*/
+}
+
 .Left.sub-active
 {
 	left: calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) - calc(var(--width)/4*var(--sub-active-d-scale)) + calc(var(--width)/4 ));
@@ -82,12 +111,13 @@ body
 	bottom: calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) - calc(var(--height)/4*var(--sub-active-d-scale)) + calc(var(--height)/4 ));
 	background-color: var(--down-color);
 }
+
 .active
 {
 	width: calc(var(--width)*var(--active-d-scale));
 	height: calc(var(--height)*var(--active-d-scale));
 	/*transform: translate( calc( (-1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );*/
-	z-index: 0;
+	z-index: 1;
 }
 .Left.active
 {
@@ -110,4 +140,23 @@ body
 	width: calc(var(--width) * var(--active-d-scale));
 	height: calc(var(--height) * var(--active-d-scale));
 	background-color: var(--main-color);
+}
+p
+{
+	color: white;
+}
+.topicText
+{
+	font-size: 75px;
+	user-select: none;
+	vertical-align: middle;
+	text-align: center;
+}
+.innerText
+{
+	font-size: 30px;
+}
+#topicL
+{
+
 }

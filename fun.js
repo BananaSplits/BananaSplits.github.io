@@ -1,3 +1,7 @@
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 window.onload = function main()
 {
 	var diamonds = document.getElementsByClassName("diamonds");
@@ -8,6 +12,14 @@ window.onload = function main()
 	}
 
 	document.getElementById("root").style.visibility = "visible";
+	let root = document.documentElement;
+	/*
+	for (var i = 0; i <= 1.10; i+=0.02)
+	{
+		root.style.SetProperty("--active-d-scale", i);
+		sleep(17);
+	}
+	*/
 }
 
 function Zoom(clickedId)
@@ -35,16 +47,19 @@ function Zoom(clickedId)
 		oldActive.style.visibility = "hidden";
 	}	
 
-	//subActives de clicked (inactive -> sub-active)
+	//subActives de clicked (inactive -> sub-active) but same direction
 
 	subActivesClassName = clicked.classList.item(3);
+	var subActives = document.getElementsByClassName(subActivesClassName);
 	if (subActivesClassName != "null")
 	{
-		var subActives = document.getElementsByClassName(subActivesClassName);
 		for (var i = subActives.length - 1; i >= 0; i--)
 		{
 			subActives[i].classList.replace("inactive", "sub-active");
-			subActives[i].style.visibility = "visible";
+			if (subActives[i].classList.item(4) != clicked.classList.item(4))
+			{
+				subActives[i].style.visibility = "visible";
+			}
 		}
 	}
 }

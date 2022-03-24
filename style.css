@@ -1,99 +1,166 @@
 :root {
-    --width:  100vw;
-    --height:  100vh;
-    --active-d-scale:  1.1;
-    --sub-active-d-scale:  0.8;
-    --main-color:  #264653;
-    --left-color:  #2a9d8f;
-    --up-color:  #e9c46a;
-    --right-color:  #f4a261;
-    --down-color:  #e76f51;
+	--width:  100vw;
+	--height:  100vh;
+	--active-d-scale:  1.1;
+	--sub-active-d-scale:  0.8;
+	--outline: 20px;
+	--main-color:  #264653;
+	--left-color:  #2a9d8f;
+	--up-color:  #e9c46a;
+	--right-color:  #f4a261;
+	--down-color:  #e76f51;
 }
+
 body
 {
-    position: absolute;
-    background-color: rgb(144, 144, 144);
-    overflow: hidden;
-    margin: 0px;
+	position: absolute;
+	background-color: rgb(144, 144, 144);
+	overflow: hidden;
+	margin: 0px;
 }
+
 #h1 {
-    width: 100%;
-    height: 100%;
-    display: table;
-    position: absolute;
+	width: 100%;
+	height: 100%;
+	display: table;
+	position: absolute;
 }
 #h1 > h1
 {
-    font-size: calc(var(--active-d-scale) * 70px);
-    color: white;
-    user-select: none;
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
+	font-size: calc(var(--active-d-scale) * 70px);
+	color: white;
+	user-select: none;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
 }
+/*
+.outline.root
+{
+	position: fixed;
+	width: calc(var(--width)*var(--active-d-scale) + var(--outline));
+	height: calc(var(--height)*var(--active-d-scale) + var(--outline));
+	transform: translate( calc( (-1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
+	z-index: 0;
+	background-color: black;
+
+	animation-name: onloadAnime;
+	animation-duration: 2s;
+
+	clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}*/
+
 .diamonds
 {
 	clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
 }
+
 .diamonds:not(.null.active:not(#root))
 {
-    position: fixed;
+	position: absolute;
 }
+
 #root
-{
-    width: calc(var(--width)*var(--active-d-scale));
-    height: calc(var(--height)*var(--active-d-scale));
-    transform: translate( calc( (-1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
-    z-index: 1;
-    background-color: var(--main-color);
-}
-.sub-active:not(#root)
-{
-    position: absolute;
-    width: calc(var(--width)/2*var(--sub-active-d-scale));
-    height: calc(var(--height)/2*var(--sub-active-d-scale));
-    pointer-events: all;
-    z-index: 3;
-}
-.Left.sub-active
-{
-    left: calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) - calc(var(--width)/4*var(--sub-active-d-scale)) + calc(var(--width)/4 ));
-    top: calc( var(--height)/2 - calc(var(--height)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
-    background-color: var(--left-color);
-}
-.Up.sub-active
-{
-    left: calc( var(--width)/2 - calc(var(--width)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) );
-    top: calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) - calc(var(--height)/4*var(--sub-active-d-scale)) + calc(var(--height)/4 ));
-    background-color: var(--up-color);
-}
-.Right.sub-active
-{
-    right: calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) - calc(var(--width)/4*var(--sub-active-d-scale)) + calc(var(--width)/4 ));
-    top: calc( var(--height)/2 - calc(var(--height)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
-    background-color: var(--right-color);
-}
-.Down.sub-active
-{
-    left: calc( var(--width)/2 - calc(var(--width)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) );
-    bottom: calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) - calc(var(--height)/4*var(--sub-active-d-scale)) + calc(var(--height)/4 ));
-    background-color: var(--down-color);
-}
-.active
 {
 	width: calc(var(--width)*var(--active-d-scale));
 	height: calc(var(--height)*var(--active-d-scale));
+	transform: translate( calc( (-1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
+	z-index: 1;
+	background-color: var(--main-color);
+	animation-name: onloadAnime;
+	animation-duration: 1s;
+}
+.sub-active:not(#root)
+{
+	/*position: absolute;*/
+	width: calc(var(--width)/2*var(--sub-active-d-scale));
+	height: calc(var(--height)/2*var(--sub-active-d-scale));
+	pointer-events: all;
+	z-index: 4;
+}
+
+.Left.sub-active
+{
+	left: calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) - calc(var(--width)/4*var(--sub-active-d-scale)) + calc(var(--width)/4 ));
+	top: calc( var(--height)/2 - calc(var(--height)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
+	background-color: var(--left-color);
+}
+.Up.sub-active
+{
+	left: calc( var(--width)/2 - calc(var(--width)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) );
+	top: calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) - calc(var(--height)/4*var(--sub-active-d-scale)) + calc(var(--height)/4 ));
+	background-color: var(--up-color);
+}
+.Right.sub-active
+{
+	right: calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) - calc(var(--width)/4*var(--sub-active-d-scale)) + calc(var(--width)/4 ));
+	top: calc( var(--height)/2 - calc(var(--height)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
+	background-color: var(--right-color);
+}
+.Down.sub-active
+{
+	left: calc( var(--width)/2 - calc(var(--width)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) );
+	bottom: calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) - calc(var(--height)/4*var(--sub-active-d-scale)) + calc(var(--height)/4 ));
+	background-color: var(--down-color);
+}
+
+.inactive
+{
+	width: 0;
+	height: 0;
+}
+
+/*
+#root.transition
+{
+	opacity: 0;
+	animation-name: fadeOut;
+	animation-duration: 0.5s;
+}
+*/
+
+.Left.transition
+{
+	animation-name: transitionLeftSubtoActive;
+	animation-duration: 0.5s;
+	background-color: var(--left-color);
+}
+.Up.transition
+{
+	animation-name: transitionUpSubtoActive;
+	animation-duration: 0.5s;
+	background-color: var(--up-color);
+}
+.Right.transition
+{
+	animation-name: transitionRightSubtoActive;
+	animation-duration: 0.5s;
+	background-color: var(--right-color);
+}
+.Down.transition
+{
+	animation-name: transitionDownSubtoActive;
+	animation-duration: 0.5s;
+	background-color: var(--down-color);
+}
+
+
+
+.active
+{
+	/*position: fixed;*/
+	width: calc(var(--width)*var(--active-d-scale));
+	height: calc(var(--height)*var(--active-d-scale));
 	/*transform: translate( calc( (-1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );*/
-	z-index: 0;
+	z-index: 2;
 }
 .active:not(.null) {
-    width: calc(var(--width)*var(--active-d-scale));
-    height: calc(var(--height)*var(--active-d-scale));
-    z-index: 1;
+	z-index: 3;
 }
+
 .Left.active
 {
-    background-color: var(--left-color);
+	background-color: var(--left-color);
 }
 .Up.active
 {
@@ -115,20 +182,20 @@ body
 }
 
 .active > .subText > .innerText {
-    font-size: calc(var(--sub-active-d-scale) * 70px);
+	font-size: calc(var(--sub-active-d-scale) * 70px);
 }
 
 .active > .subText {
-    width: calc(var(--width)/2*var(--sub-active-d-scale));
-    height: calc(var(--height)/2*var(--sub-active-d-scale));
-    font-size: calc(var(--sub-active-d-scale) * 70px);
-    position: absolute;
-    display: table;
+	width: calc(var(--width)/2*var(--sub-active-d-scale));
+	height: calc(var(--height)/2*var(--sub-active-d-scale));
+	font-size: calc(var(--sub-active-d-scale) * 70px);
+	position: absolute;
+	display: table;
 }
 .active > .subTopicL
 {
-    left: calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) - calc(var(--width)/4*var(--sub-active-d-scale)) + calc(var(--width)/4 ));
-    top: calc( var(--height)/2 - calc(var(--height)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
+	left: calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) - calc(var(--width)/4*var(--sub-active-d-scale)) + calc(var(--width)/4 ));
+	top: calc( var(--height)/2 - calc(var(--height)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
 }
 .active > .subTopicU
 {
@@ -141,36 +208,148 @@ body
 	top: calc( var(--height)/2 - calc(var(--height)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
 }
 .active > .subTopicD {
-    left: calc( var(--width)/2 - calc(var(--width)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) );
-	bottom: calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) - calc(var(--height)/4*var(--sub-active-d-scale)) + calc(var(--height)/4 ));
+	left: calc( var(--width)/2 - calc(var(--width)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) );
+	bottom: calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) - calc(var(--height)/4*var(--sub-active-d-scale)) + calc(var(--height)/4 ) );
 }
 
 .active > .subText > .topicText
 {
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
 }
 p {
-    user-select: none;
-    color: white;
-    padding: 0;
-    margin: 0;
+	user-select: none;
+	color: white;
+	padding: 0;
+	margin: 0;
 }
 .sub-active > .subText > .innerText {
-    font-size: 0;
+	font-size: 0;
 }
+
+.active > .subText > .innerText {
+	font-size: 10;
+	position: fixed;
+	left: 100px;
+	top: 100px;
+}
+
 .sub-active > .subText {
-    width: 100%;
-    height: 100%;
-    font-size: calc(var(--sub-active-d-scale) * 70px);
-    display: table;
+	width: 100%;
+	height: 100%;
+	font-size: calc(var(--sub-active-d-scale) * 70px);
+	display: table;
 }
 .sub-active > .subText > p {
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
 }
 .active.null:not(#root) > .subText > p {
-    color: black;
+	color: black;
+}
+
+/*                                                              transitions                                                  */
+
+@keyframes onloadAnime
+{
+	from
+	{
+		width: 0;
+		height: 0;
+		transform: translate( calc( (1/2) * ( var(--width) ) ) , calc( (1/2) * ( var(--height) ) ) );
+	}
+	to
+	{
+		width: calc(var(--width)*var(--active-d-scale));
+		height: calc(var(--height)*var(--active-d-scale));
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
+	}
+}
+
+@keyframes transitionLeftSubtoActive
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--sub-active-d-scale));
+		height: calc(var(--height)/2*var(--sub-active-d-scale));
+		left: calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) - calc(var(--width)/4*var(--sub-active-d-scale)) + calc(var(--width)/4 ));
+		top: calc( var(--height)/2 - calc(var(--height)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
+	}
+	to
+	{
+		width: calc(var(--width) * var(--active-d-scale));
+		height: calc(var(--height) * var(--active-d-scale));
+		left: 0;
+		top: 0;
+
+	}
+}
+
+@keyframes transitionUpSubtoActive
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--sub-active-d-scale));
+		height: calc(var(--height)/2*var(--sub-active-d-scale));
+		left: calc( var(--width)/2 - calc(var(--width)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) );
+		top: calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) - calc(var(--height)/4*var(--sub-active-d-scale)) + calc(var(--height)/4 ));
+	}
+	to
+	{
+		width: calc(var(--width) * var(--active-d-scale));
+		height: calc(var(--height) * var(--active-d-scale));
+		left: 0;
+		top: 0;
+	}
+}
+
+@keyframes transitionRightSubtoActive
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--sub-active-d-scale));
+		height: calc(var(--height)/2*var(--sub-active-d-scale));
+		right: calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) - calc(var(--width)/4*var(--sub-active-d-scale)) + calc(var(--width)/4 ));
+		top: calc( var(--height)/2 - calc(var(--height)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) ) );
+	}
+	to
+	{
+		width: calc(var(--width) * var(--active-d-scale));
+		height: calc(var(--height) * var(--active-d-scale));
+		right: 0;
+		top: 0;
+	}
+}
+
+@keyframes transitionDownSubtoActive
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--sub-active-d-scale));
+		height: calc(var(--height)/2*var(--sub-active-d-scale));
+		left: calc( var(--width)/2 - calc(var(--width)/4*var(--sub-active-d-scale)) + calc( (1/2) * ( var(--width) * var(--active-d-scale) - var(--width) ) ) );
+		bottom: calc( (1/2) * ( var(--height) * var(--active-d-scale) - var(--height) ) - calc(var(--height)/4*var(--sub-active-d-scale)) + calc(var(--height)/4 ));
+	}
+	to
+	{
+		width: calc(var(--width) * var(--active-d-scale));
+		height: calc(var(--height) * var(--active-d-scale));
+		left: 0;
+		bottom: 0;
+
+	}
+}
+
+@keyframes fadeOut
+{
+	from
+	{
+		opacity: 1;
+	}
+	to
+	{
+		opacity: 0;
+	}
 }

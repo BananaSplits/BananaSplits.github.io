@@ -1,0 +1,757 @@
+:root
+{
+
+	--width: 100vw;
+	--height: 100vh;
+	--active: 1.1;
+	--sub: 0.8;
+	--outline-active: 1.130;
+	--outline-sub: 0.830;
+	--marginy: calc((1/50)*var(--height));
+	--marginx: calc((1/50)*var(--width));
+
+}
+
+/*                                                       Generalites                                               */
+
+*
+{
+	position: absolute;
+}
+
+body
+{
+	background-image: url("https://foodtank.com/wp-content/uploads/2020/04/COVID-19-Relief_Small-Farms-.jpg");
+	background-repeat: no-repeat;
+	background-size: 100vw;
+	overflow: hidden;
+	margin: 0;
+}
+
+.active.null:not(#root, #outline-root)
+{
+	clip-path: polygon(20% 10%, 80% 10%, 90% 20%, 90% 80%, 80% 90%, 20% 90%, 10% 80%, 10% 20%);
+	/*transition: clip-path 1s;*/
+}
+
+.active, .sub-active, .inactive
+{
+	clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+	visibility: hidden;
+}
+
+.outline-root, .outline-right, .outline-top, .outline-left, .outline-down
+{
+	background-color: rgb(144, 144, 144);
+	opacity: 0.5;
+}
+
+/*                                                       Root                                               */
+
+.outline-root 
+{	
+	transform: translate( calc( (-1/2) * ( var(--width) * var(--outline-active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--outline-active) - var(--height) ) ) );
+	width: calc(var(--width)*var(--outline-active));
+	height: calc(var(--height)*var(--outline-active));
+	z-index: 0;
+	pointer-events: none;
+
+	animation-name: outline-RootAnime;
+	animation-duration: 0.75s;
+}
+
+.root
+{
+	transform: translate( calc( (-1/2) * ( var(--width) * var(--active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active) - var(--height) ) ) );
+	width: calc(var(--width)*var(--active));
+	height: calc(var(--height)*var(--active));
+	background-color: #264653;
+	z-index: 1;
+	pointer-events: none;
+
+	animation-name: RootAnime;
+	animation-duration: 1.25s;
+}
+
+/*                                                       Actives                                               */
+
+.active:not(#root)
+{
+	pointer-events: none !important;
+}
+
+.active.outline-right, .active.outline-top, .active.outline-left, .active.outline-down
+{
+	transform: translate( calc( (-1/2) * ( var(--width) * var(--outline-active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--outline-active) - var(--height) ) ) );
+	width: calc(var(--width)*var(--outline-active));
+	height: calc(var(--height)*var(--outline-active));
+	z-index: 0;
+	pointer-events: none !important;
+}
+
+.active.right, .active.top, .active.left, .active.down
+{
+	transform: translate( calc( (-1/2) * ( var(--width) * var(--active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active) - var(--height) ) ) );
+	width: calc(var(--width)*var(--active));
+	height: calc(var(--height)*var(--active));
+	background-color: #264653;
+	z-index: 1;
+}
+
+/*                                                       Sub-Actives                                               */
+
+.sub-active
+{
+	pointer-events: none;
+}
+
+.sub-active.none
+{
+	pointer-events: all;
+}
+
+.sub-active.outline-right, .sub-active.outline-top, .sub-active.outline-left, .sub-active.outline-down 
+{
+	width: calc(var(--width)/2*var(--outline-sub));
+	height: calc(var(--height)/2*var(--outline-sub));
+	z-index: 2;
+	pointer-events: none !important;
+}
+
+.sub-active.right, .sub-active.top, .sub-active.left, .sub-active.down 
+{
+	width: calc(var(--width)/2*var(--sub));
+	height: calc(var(--height)/2*var(--sub));
+	z-index: 3;
+}
+
+.sub-active.right, .sub-active.outline-right
+{
+	transform: translate( calc( var(--width) - 100% - var(--marginx) ) , calc( (1/2) * var(--height) - 50% ) );
+
+}
+
+.sub-active.top, .sub-active.outline-top
+{
+	transform: translate( calc( (1/2) * var(--width) - 50% ) , var(--marginy));
+
+}
+
+.sub-active.left, .sub-active.outline-left
+{
+	transform: translate( var(--marginx) , calc( (1/2) * var(--height) - 50% ) );
+
+}
+
+.sub-active.down, .sub-active.outline-down
+{
+	transform: translate( calc( (1/2) * var(--width) - 50% ) , calc( var(--height) - 100% - var(--marginy) ) );
+
+}
+
+/*                                                       Texts                                                  */
+
+#h1
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: translate(calc( var(--width) / 2 - 150px ), calc( var(--height) / 2 - 75px ));
+	width: 300px;
+	height: 150px;
+	z-index: 1;
+	pointer-events: none;
+}
+#h1 h1
+{
+	
+}
+
+/*                                                       Couleurs                                               */
+
+/*
+right: Updates, Lore, Mac, Community
+top: Presentation, Upcoming, Windows, Staff
+left: Download, Patch note, Gameplay, Discord
+down: About us, History, Guide, Linux
+*/
+
+#Download
+{
+	background-color: #2a9d8f;
+}
+
+#Download-Windows
+{
+	background-color: #e9c46a;
+}
+
+#Download-Mac
+{
+	background-color: #f4a261;
+}
+
+#Download-Linux
+{
+	background-color: #e76f51;
+}
+
+
+
+#Presentation
+{
+	background-color: #e9c46a;
+}
+
+#Presentation-Gameplay
+{
+	background-color: #2a9d8f;
+}
+
+#Presentation-Lore
+{
+	background-color: #f4a261;
+}
+
+#Presentation-Guide
+{
+	background-color: #e76f51;
+}
+
+
+
+#Updates
+{
+	background-color: #f4a261;
+}
+
+#Updates-Patch-note
+{
+	background-color: #2a9d8f;
+}
+
+#Updates-Upcoming
+{
+	background-color: #e9c46a;
+}
+
+#Updates-History
+{
+	background-color: #e76f51;
+}
+
+
+
+#About-us
+{
+	background-color: #e76f51;
+}
+
+#About-us-Discord
+{
+	background-color: #2a9d8f;
+}
+
+#About-us-Staff
+{
+	background-color: #e9c46a;
+}
+
+#About-us-Community
+{
+	background-color: #f4a261;
+}
+
+/*                                                      Animations                                                   */
+
+.outline-fadeOut-Class
+{
+	animation: outline-fadeOut 0.75s;
+}
+
+
+.fadeOut-Class
+{
+	animation: fadeOut 0.75s;
+}
+
+@keyframes outline-fadeOut
+{
+	from
+	{
+		opacity: 1;
+	}
+	to
+	{
+		opacity: 0;
+	}
+}
+
+@keyframes fadeOut
+{
+	from
+	{
+		opacity: 1;
+	}
+	to
+	{
+		opacity: 0;
+	}
+}
+
+
+/*                                              onload root animation                                        */
+
+
+
+@keyframes outline-RootAnime
+{
+	from
+	{
+		width: 0;
+		height: 0;
+		transform: translate( calc( (1/2) * ( var(--width) ) ) , calc( (1/2) * ( var(--height) ) ) );	}
+	to
+	{
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--outline-active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--outline-active) - var(--height) ) ) );
+		width: calc(var(--width)*var(--outline-active));
+		height: calc(var(--height)*var(--outline-active));
+	}
+}
+
+@keyframes RootAnime
+{
+	from
+	{
+		width: 0;
+		height: 0;
+		transform: translate( calc( (1/2) * ( var(--width) ) ) , calc( (1/2) * ( var(--height) ) ) );	}
+	to
+	{
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active) - var(--height) ) ) );
+		width: calc(var(--width)*var(--active));
+		height: calc(var(--height)*var(--active));
+	}
+}
+
+/*                                          from sub-active to active of nulls                              */
+
+/*
+.outline-null-right-Class
+{
+	animation: outline-null-right 0.5s;
+}
+
+.null-right-Class
+{
+	animation: null-right 0.75s;
+}
+
+.outline-null-top-Class
+{
+	animation: outline-null-top 0.5s;
+}
+
+.null-top-Class
+{
+	animation: null-top 0.75s;
+}
+
+.outline-null-left-Class
+{
+	animation: outline-null-left 0.5s;
+}
+
+.null-left-Class
+{
+	animation: null-left 0.75s;
+}
+
+.outline-null-down-Class
+{
+	animation: outline-null-down 0.5s;
+}
+
+.null-down-Class
+{
+	animation: null-down 0.75s;
+}
+
+@keyframes outline-null-right
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--outline-sub));
+		height: calc(var(--height)/2*var(--outline-sub));
+		transform: translate( calc( var(--width) - 100% - var(--marginx) ) , calc( (1/2) * var(--height) - 50% ) );
+		clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+	}
+	to
+	{
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--outline-active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--outline-active) - var(--height) ) ) );
+		width: calc(var(--width)*var(--outline-active));
+		height: calc(var(--height)*var(--outline-active));
+		clip-path: polygon(20% 10%, 80% 10%, 90% 20%, 90% 80%, 80% 90%, 20% 90%, 10% 80%, 10% 20%);
+	}
+}
+
+@keyframes null-right
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--sub));
+		height: calc(var(--height)/2*var(--sub));
+		transform: translate( calc( var(--width) - 100% - var(--marginx) ) , calc( (1/2) * var(--height) - 50% ) );
+		clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+	}
+	to
+	{
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active) - var(--height) ) ) );
+		width: calc(var(--width)*var(--active));
+		height: calc(var(--height)*var(--active));
+		clip-path: polygon(20% 10%, 80% 10%, 90% 20%, 90% 80%, 80% 90%, 20% 90%, 10% 80%, 10% 20%);
+	}
+}
+*/
+
+/*                                          from inactive to sub-active                                     */
+
+.outline-popAnime-right-Class
+{
+	animation: outline-popAnime-right 0.5s;
+}
+
+.popAnime-right-Class
+{
+	animation: popAnime-right 0.75s;
+}
+
+.outline-popAnime-top-Class
+{
+	animation: outline-popAnime-top 0.5s;
+}
+
+.popAnime-top-Class
+{
+	animation: popAnime-top 0.75s;
+}
+
+.outline-popAnime-left-Class
+{
+	animation: outline-popAnime-left 0.5s;
+}
+
+.popAnime-left-Class
+{
+	animation: popAnime-left 0.75s;
+}
+
+.outline-popAnime-down-Class
+{
+	animation: outline-popAnime-down 0.5s;
+}
+
+.popAnime-down-Class
+{
+	animation: popAnime-down 0.75s;
+}
+
+@keyframes outline-popAnime-right
+{
+	from
+	{
+		width: 0;
+		height: 0;
+		transform: translate( calc( var(--width) - 100% - var(--marginx) ) , calc( (1/2) * var(--height) - 50% ) );
+	}
+	to
+	{
+		transform: translate( calc( var(--width) - 100% - var(--marginx) ) , calc( (1/2) * var(--height) - 50% ) );
+		width: calc(var(--width)/2*var(--outline-sub));
+		height: calc(var(--height)/2*var(--outline-sub));
+	}
+}
+
+@keyframes popAnime-right
+{
+	from
+	{
+		width: 0;
+		height: 0;
+		transform: translate( calc( var(--width) - 100% - var(--marginx) ) , calc( (1/2) * var(--height) - 50% ) );
+	}
+	to
+	{
+		transform: translate( calc( var(--width) - 100% - var(--marginx) ) , calc( (1/2) * var(--height) - 50% ) );
+		width: calc(var(--width)/2*var(--sub));
+		height: calc(var(--height)/2*var(--sub));
+	}
+}
+
+@keyframes outline-popAnime-top
+{
+	from
+	{
+		width: 0;
+		height: 0;
+		transform: translate( calc( (1/2) * var(--width) - 50% ) , var(--marginy));
+	}
+	to
+	{
+		transform: translate( calc( (1/2) * var(--width) - 50% ) , var(--marginy));
+		width: calc(var(--width)/2*var(--outline-sub));
+		height: calc(var(--height)/2*var(--outline-sub));
+	}
+}
+
+@keyframes popAnime-top
+{
+	from
+	{
+		width: 0;
+		height: 0;
+		transform: translate( calc( (1/2) * var(--width) - 50% ) , var(--marginy));
+	}
+	to
+	{
+		transform: translate( calc( (1/2) * var(--width) - 50% ) , var(--marginy));
+		width: calc(var(--width)/2*var(--sub));
+		height: calc(var(--height)/2*var(--sub));
+	}
+}
+
+@keyframes outline-popAnime-left
+{
+	from
+	{
+		width: 0;
+		height: 0;
+		transform: translate( var(--marginx) , calc( (1/2) * var(--height) - 50% ) );
+	}
+	to
+	{
+		transform: translate( var(--marginx) , calc( (1/2) * var(--height) - 50% ) );
+		width: calc(var(--width)/2*var(--outline-sub));
+		height: calc(var(--height)/2*var(--outline-sub));
+	}
+}
+
+@keyframes popAnime-left
+{
+	from
+	{
+		width: 0;
+		height: 0;
+		transform: translate( var(--marginx) , calc( (1/2) * var(--height) - 50% ) );
+	}
+	to
+	{
+		transform: translate( var(--marginx) , calc( (1/2) * var(--height) - 50% ) );
+		width: calc(var(--width)/2*var(--sub));
+		height: calc(var(--height)/2*var(--sub));
+	}
+}
+
+@keyframes outline-popAnime-down
+{
+	from
+	{
+		width: 0;
+		height: 0;
+		transform: translate( calc( (1/2) * var(--width) - 50% ) , calc( var(--height) - 100% - var(--marginy) ) );
+	}
+	to
+	{
+		transform: translate( calc( (1/2) * var(--width) - 50% ) , calc( var(--height) - 100% - var(--marginy) ) );
+		width: calc(var(--width)/2*var(--outline-sub));
+		height: calc(var(--height)/2*var(--outline-sub));
+	}
+}
+
+@keyframes popAnime-down
+{
+	from
+	{
+		width: 0;
+		height: 0;
+		transform: translate( calc( (1/2) * var(--width) - 50% ) , calc( var(--height) - 100% - var(--marginy) ) );
+	}
+	to
+	{
+		transform: translate( calc( (1/2) * var(--width) - 50% ) , calc( var(--height) - 100% - var(--marginy) ) );
+		width: calc(var(--width)/2*var(--sub));
+		height: calc(var(--height)/2*var(--sub));
+	}
+}
+
+
+
+/*                                          from sub-active to active                                     */
+
+.outline-right-to-active-Class
+{
+	animation: outline-right-to-active 0.5s;
+}
+
+.right-to-active-Class
+{
+	animation: right-to-active 0.75s;
+}
+
+.outline-top-to-active-Class
+{
+	animation: outline-top-to-active 0.5s;
+}
+
+.top-to-active-Class
+{
+	animation: top-to-active 0.75s;
+}
+
+.outline-left-to-active-Class
+{
+	animation: outline-left-to-active 0.5s;
+}
+
+.left-to-active-Class
+{
+	animation: left-to-active 0.75s;
+}
+
+.outline-down-to-active-Class
+{
+	animation: outline-down-to-active 0.5s;
+}
+
+.down-to-active-Class
+{
+	animation: down-to-active 0.75s;
+}
+
+@keyframes outline-right-to-active
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--outline-sub));
+		height: calc(var(--height)/2*var(--outline-sub));
+		transform: translate( calc( var(--width) - 100% - var(--marginx) ) , calc( (1/2) * var(--height) - 50% ) );
+	}
+	to
+	{
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--outline-active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--outline-active) - var(--height) ) ) );
+		width: calc(var(--width)*var(--outline-active));
+		height: calc(var(--height)*var(--outline-active));
+	}
+}
+
+@keyframes right-to-active
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--sub));
+		height: calc(var(--height)/2*var(--sub));
+		transform: translate( calc( var(--width) - 100% - var(--marginx) ) , calc( (1/2) * var(--height) - 50% ) );
+	}
+	to
+	{
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active) - var(--height) ) ) );
+		width: calc(var(--width)*var(--active));
+		height: calc(var(--height)*var(--active));
+	}
+}
+
+@keyframes outline-top-to-active
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--outline-sub));
+		height: calc(var(--height)/2*var(--outline-sub));
+		transform: translate( calc( (1/2) * var(--width) - 50% ) , var(--marginy));
+	}
+	to
+	{
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--outline-active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--outline-active) - var(--height) ) ) );
+		width: calc(var(--width)*var(--outline-active));
+		height: calc(var(--height)*var(--outline-active));
+	}
+}
+
+@keyframes top-to-active
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--sub));
+		height: calc(var(--height)/2*var(--sub));
+		transform: translate( calc( (1/2) * var(--width) - 50% ) , var(--marginy));
+	}
+	to
+	{
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active) - var(--height) ) ) );
+		width: calc(var(--width)*var(--active));
+		height: calc(var(--height)*var(--active));
+	}
+}
+
+@keyframes outline-left-to-active
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--outline-sub));
+		height: calc(var(--height)/2*var(--outline-sub));
+		transform: translate( var(--marginx) , calc( (1/2) * var(--height) - 50% ) );
+	}
+	to
+	{
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--outline-active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--outline-active) - var(--height) ) ) );
+		width: calc(var(--width)*var(--outline-active));
+		height: calc(var(--height)*var(--outline-active));
+	}
+}
+
+@keyframes left-to-active
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--sub));
+		height: calc(var(--height)/2*var(--sub));
+		transform: translate( var(--marginx) , calc( (1/2) * var(--height) - 50% ) );
+	}
+	to
+	{
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active) - var(--height) ) ) );
+		width: calc(var(--width)*var(--active));
+		height: calc(var(--height)*var(--active));
+	}
+}
+
+@keyframes outline-down-to-active
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--outline-sub));
+		height: calc(var(--height)/2*var(--outline-sub));
+		transform: translate( calc( (1/2) * var(--width) - 50% ) , calc( var(--height) - 100% - var(--marginy) ) );
+	}
+	to
+	{
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--outline-active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--outline-active) - var(--height) ) ) );
+		width: calc(var(--width)*var(--outline-active));
+		height: calc(var(--height)*var(--outline-active));
+	}
+}
+
+@keyframes down-to-active
+{
+	from
+	{
+		width: calc(var(--width)/2*var(--sub));
+		height: calc(var(--height)/2*var(--sub));
+		transform: translate( calc( (1/2) * var(--width) - 50% ) , calc( var(--height) - 100% - var(--marginy) ) );
+	}
+	to
+	{
+		transform: translate( calc( (-1/2) * ( var(--width) * var(--active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active) - var(--height) ) ) );
+		width: calc(var(--width)*var(--active));
+		height: calc(var(--height)*var(--active));
+	}
+}

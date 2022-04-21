@@ -1,317 +1,232 @@
-window.onload = function main()
-{
-	/* Initialize all the diamonds */
-	var diamonds = document.getElementsByClassName("inactive");
-	for (var i = diamonds.length - 1; i >= 0; i--)
-	{
-		diamonds[i].setAttribute("onclick", "Zoom('"+ diamonds[i].id +"','"+ diamonds[i].classList.item(1) +"', '"+ diamonds[i].classList.item(2) +"', '"+ diamonds[i].classList.item(3) +"');");
-	}
-	
-	var subs = document.getElementsByClassName("sub0");
-	for (var i = subs.length - 1; i >= 0; i--)
-	{
-		subs[i].classList.replace("inactive", "sub-active")
-	}
- 
-	var root = document.getElementById("root"); root.classList.replace("sub-active", "active"); root.style.visibility = "visible";
-	var outlineRoot = document.getElementById("outline-root"); outlineRoot.classList.replace("sub-active", "active"); outlineRoot.style.visibility = "visible";
-	root.style.pointerEvents = "all";
 
-	/* global var for Zoom */
-	onLoad = true;
-	/* global var for Dezoom */
-	ican = true;
+/*
+classList items of type:
+	root, menu, page:
+		0: state			
+		1: level
+		2: emplacement
+		3: parentID
+		4: childsIDs
+		5: outlineID
+		6: contentID
+		7: type
+		8: transition
+		9: on/off
+
+	outline, content:
+		0: state	
+		1: level
+		2: emplacement
+		3: type
+		4: transition
+		5: on/off
+*/
+
+function getChilds(childsIDs)
+{
+	/* returns list of childs in the form of [child, child's emplacement] */
+	/* returns null if getting pages' childs */
+	if (childsIDs == "null")
+	{
+		return null;
+	}
+	let childs = [];
+	for (ID of childsIDs.split(','))
+	{
+		let child = document.getElementById(ID);
+		childs.push([ child, child.classList.item(2) ]);
+	}
+	return childs;
 }
 
-function Zoom(clickedId, upperClass, currentClass, subsClass)
+function getBros(clicked, level)
 {
-	ican = false;
-	if (onLoad)
+	/* returns list of bros of clicked in the form of [bro, bro's emplacement] */
+	/* returns null if getting bros of root */
+	if (clicked.id == "root")
 	{
-		/* first click, just shows subs of root and hides h1 */
-		var subs = document.getElementsByClassName("sub-active");
-		for (var i = subs.length - 1; i >= 0; i--)
+		return null;
+	}
+	let bros = [];
+	const parentID = clicked.classList.item(3);
+	for (bro of document.getElementsByClassName(level))
+	{
+		if (bro.id != clicked.id && bro.classList.item(3) == parentID)
 		{
-			subs[i].style.visibility = "visible";
-			subs[i].style.pointerEvents = "none";
+			bros.push([ bro, bro.classList.item(2) ]);
 		}
-		setTimeout(function()
-		{
+	}
+	return bros;
+}
 
-			for (var i = subs.length - 1; i >= 0; i--)
+/* runs on load once, page renders after this process ends */
+window.onload = function main()
+{
+	/* initialize all outlines and contents classes of every diamond, and adds its onclick event */
+	var diamonds = document.getElementsByClassName("diamond");
+	for (const diamond of diamonds)
+	{
+		var cl = diamond.classList;
+		var cn = cl.item(0)+" "+cl.item(1)+" "+cl.item(2);
+		document.getElementById( cl.item(5) ).className = cn+" outline transition off all";
+		document.getElementById( cl.item(6) ).className = cn+" content transition off all";
+		/* Zoom(clickedID, parentID, childsIDs, level); */
+		diamond.setAttribute("onclick", "Zoom('"+ diamond.id +"','"
+												+ diamond.classList.item(3) +"', '"
+												+ diamond.classList.item(4) +"', '"
+												+ diamond.classList.item(1) +"');");
+		diamond.addEventListener('transitionstart', function() {
+			diamond.classList.replace("off", "on");
+		});
+		diamond.addEventListener('transitionend', function() {
+			diamond.classList.replace("on", "off");
+			if (diamond.classList.item(0) == "inactive")
 			{
-				subs[i].style.pointerEvents = "all";
+				diamond.style.setProperty("width", 0);
+				diamond.style.setProperty("height", 0);
 			}
-
-		}.bind(subs), 750);
-
-		/* animations pop */
-		/*ican = false;
-		setTimeout(function(){ican=true;}, 750);*/
-
-		subs[0].classList.replace("none", "outline-popAnime-right-Class"); setTimeout(function(){
-		subs[0].classList.replace("outline-popAnime-right-Class", "none");}.bind(subs), 500);
-		subs[1].classList.replace("none", "popAnime-right-Class"); setTimeout(function(){
-		subs[1].classList.replace("popAnime-right-Class", "none");}.bind(subs), 750);
-
-		subs[2].classList.replace("none", "outline-popAnime-top-Class"); setTimeout(function(){
-		subs[2].classList.replace("outline-popAnime-top-Class", "none");}.bind(subs), 500);
-		subs[3].classList.replace("none", "popAnime-top-Class"); setTimeout(function(){
-		subs[3].classList.replace("popAnime-top-Class", "none");}.bind(subs), 750);
-
-		subs[4].classList.replace("none", "outline-popAnime-left-Class"); setTimeout(function(){
-		subs[4].classList.replace("outline-popAnime-left-Class", "none");}.bind(subs), 500);
-		subs[5].classList.replace("none", "popAnime-left-Class"); setTimeout(function(){
-		subs[5].classList.replace("popAnime-left-Class", "none");}.bind(subs), 750);
-
-		subs[6].classList.replace("none", "outline-popAnime-down-Class"); setTimeout(function(){
-		subs[6].classList.replace("outline-popAnime-down-Class", "none");}.bind(subs), 500);
-		subs[7].classList.replace("none", "popAnime-down-Class"); setTimeout(function(){
-		subs[7].classList.replace("popAnime-down-Class", "none");}.bind(subs), 750);
-		/*                */
-
-		document.getElementById("h1").style.visibility = "hidden";
-		document.getElementById("root").style.pointerEvents = "none";
-		onLoad = false;
-		ican = true;
-		return;
+		});
 	}
+}
 
-	var upper = document.getElementsByClassName(upperClass);
-	for (var i = upper.length - 1; i >= 0; i--)
+/* sets e in l at index i */
+function set(e, l, i) { l.replace(l.item(i), e); }
+
+/* update states and animation classes of outline and content of every diamond */
+function Update()
+{
+	var diamonds = document.getElementsByClassName("diamond");
+	for (const diamond of diamonds)
 	{
-		if (upper[i].id != "root" && upper[i].id != "outline-root")
-		{
-			upper[i].style.visibility = "hidden";
-		}
-		upper[i].classList.replace("active", "inactive");
+		/* state */
+		for (i of [5, 6]){ set(diamond.classList.item(0), document.getElementById( diamond.classList.item(i) ).classList, 0 ); }
+		/* transition */
+	/*
+		set(diamond.classList.item(8) + "-outline", document.getElementById( diamond.classList.item(5) ).classList, 4 );
+		set(diamond.classList.item(8), document.getElementById( diamond.classList.item(6) ).classList, 4 );*/
+		/* on/off */
+		for (i of [5, 6]){ set(diamond.classList.item(9), document.getElementById( diamond.classList.item(i) ).classList, 5 ); }
 	}
+}
 
-	var current = document.getElementsByClassName(currentClass);
-	for (var i = current.length - 1; i >= 0; i--)
+function Zoom(clickedID, parentID, childsIDs, level)
+{
+	/*
+	clicked is root:
+		childs animation inactive -> sub-active
+		hide h1
+	else:
+		father animation fadeOut
+		bros animation sub-active -> inactive
+		clicked animation sub-active -> active
+		clicked childs inactive -> sub-active
+	*/
+	Update();
+	if (clickedID == "root")
 	{
-		if (current[i].id != "root" && current[i].id != "outline-root")
+		if (document.getElementById("Updates").classList.item(0) == "inactive")
 		{
-			current[i].style.visibility = "hidden";
+			for (child of getChilds(childsIDs))
+			{
+				/*set(child[1] + "-inactive-to-sub-active", child[0].classList, 8);*/
+				set("sub-active", child[0].classList, 0);
+			}
+			document.getElementById("h1").className = "h1-fadeOut";
 		}
-		current[i].classList.replace("sub-active", "inactive");
-	}
-
-	var clicked = document.getElementById(clickedId);
-	var outlineClicked = document.getElementById("outline-"+clickedId);
-
-	if (clicked.classList.item(3) == "null")
-	{
-		document.getElementById("root").style.visibility = "hidden";
-		document.getElementById("outline-root").style.visibility = "hidden";
-	}
-
-	if (subsClass == "null")
-	{
-		/* lowest zoom */
-		clicked.classList.replace("inactive", "active"); clicked.style.visibility = "visible";
-		outlineClicked.classList.replace("inactive", "active"); outlineClicked.style.visibility = "visible";
-
-		var currActive = document.getElementsByClassName("active")[0];
-
-		currActive.classList.replace("none", "fadeOut-Class"); setTimeout(function(){
-		currActive.classList.replace("fadeOut-Class", "none");}.bind(currActive), 750);
-		currActive.classList.replace("none", "outline-fadeOut-Class"); setTimeout(function(){
-		currActive.classList.replace("outline-fadeOut-Class", "none");}.bind(currActive), 750);
-
-		/* animations to active */
-
-
-		if (clicked.classList.item(4) == "right")
-		{
-			outlineClicked.classList.replace("none", "outline-null-right-Class"); setTimeout(function(){
-			outlineClicked.classList.replace("outline-null-right-Class", "none");}, 750);
-			clicked.classList.replace("none", "null-right-Class"); setTimeout(function(){
-			clicked.classList.replace("null-right-Class", "none");}, 750);
-		}
-		if (clicked.classList.item(4) == "top")
-		{
-			outlineClicked.classList.replace("none", "outline-top-to-active-Class"); setTimeout(function(){
-			outlineClicked.classList.replace("outline-top-to-active-Class", "none");}, 750);
-			clicked.classList.replace("none", "top-to-active-Class"); setTimeout(function(){
-			clicked.classList.replace("top-to-active-Class", "none");}, 750);
-		}
-		if (clicked.classList.item(4) == "left")
-		{
-			outlineClicked.classList.replace("none", "outline-left-to-active-Class"); setTimeout(function(){
-			outlineClicked.classList.replace("outline-left-to-active-Class", "none");}, 750);
-			clicked.classList.replace("none", "left-to-active-Class"); setTimeout(function(){
-			clicked.classList.replace("left-to-active-Class", "none");}, 750);
-		}
-		if (clicked.classList.item(4) == "down")
-		{
-			outlineClicked.classList.replace("none", "outline-down-to-active-Class"); setTimeout(function(){
-			outlineClicked.classList.replace("outline-down-to-active-Class", "none");}, 750);
-			clicked.classList.replace("none", "down-to-active-Class"); setTimeout(function(){
-			clicked.classList.replace("down-to-active-Class", "none");}, 750);
-		}
-
-		/*                      */
 	}
 	else
 	{
-		/* intermediate zoom */
-		var subs = document.getElementsByClassName(subsClass);
-		for (var i = subs.length - 1; i >= 0; i--)
+		const clicked = document.getElementById(clickedID);
+		const parent = document.getElementById(parentID);
+		/* father animation fadeOut */
+		/*set("fadeOut", parent.classList, 8);*/
+		set("inactive", parent.classList, 0);
+		/* bros animation sub-active -> inactive */
+		for (bro of getBros( document.getElementById(clickedID), level ))
 		{
-			subs[i].style.visibility = "visible";
-			subs[i].classList.replace("inactive", "sub-active");
-			subs[i].style.pointerEvents = "none";
+			/*set(bro[1] + "-sub-active-to-inactive", bro[0].classList, 8);*/
+			set("inactive", bro[0].classList, 0);
 		}
-		setTimeout(function()
+		/* clicked animation sub-active -> active */
+		console.log("allez");
+		/*set(clicked.classList.item(2) + "-sub-active-to-active", clicked.classList, 8);*/
+		set("active", clicked.classList, 0);
+		/* clicked childs inactive -> sub-active */
+		const childs = getChilds(childsIDs);
+		if (childs != null)
 		{
-
-			for (var i = subs.length - 1; i >= 0; i--)
+			for (child of childs)
 			{
-				subs[i].style.pointerEvents = "all";
+				/*set(child[1] + "-inactive-to-sub-active", child[0].classList, 8);*/
+				set("sub-active", child[0].classList, 0);
 			}
-
-		}.bind(subs), 750);
-
-		clicked.classList.replace("sub-active", "active");
-		outlineClicked.classList.replace("sub-active", "active");
-
-		/* animations to active */
-		/*ican = false;
-		setTimeout(function(){ican=true;}, 750);*/
-
-		document.getElementById("root").classList.replace("none", "fadeOut-Class"); setTimeout(function(){
-		document.getElementById("root").classList.replace("fadeOut-Class", "none");}, 750);
-		document.getElementById("outline-root").classList.replace("none", "outline-fadeOut-Class"); setTimeout(function(){
-		document.getElementById("outline-root").classList.replace("outline-fadeOut-Class", "none");}, 750);
-
-		if (clicked.classList.item(4) != "right")
-		{
-			subs[0].classList.replace("none", "outline-popAnime-right-Class"); setTimeout(function(){
-			subs[0].classList.replace("outline-popAnime-right-Class", "none");}.bind(subs), 500);
-			subs[1].classList.replace("none", "popAnime-right-Class"); setTimeout(function(){
-			subs[1].classList.replace("popAnime-right-Class", "none");}.bind(subs), 750);
 		}
-		else
-		{
-			subs[0].classList.replace("none", "outline-right-to-active-Class"); setTimeout(function(){
-			subs[0].classList.replace("outline-right-to-active-Class", "none");}.bind(subs), 500);
-			subs[1].classList.replace("none", "right-to-active-Class"); setTimeout(function(){
-			subs[1].classList.replace("right-to-active-Class", "none");}.bind(subs), 750);
-		}
-		
-		if (clicked.classList.item(4) != "top")
-		{
-			subs[2].classList.replace("none", "outline-popAnime-top-Class"); setTimeout(function(){
-			subs[2].classList.replace("outline-popAnime-top-Class", "none");}.bind(subs), 500);
-			subs[3].classList.replace("none", "popAnime-top-Class"); setTimeout(function(){
-			subs[3].classList.replace("popAnime-top-Class", "none");}.bind(subs), 750);
-		}
-		else
-		{
-			subs[2].classList.replace("none", "outline-top-to-active-Class"); setTimeout(function(){
-			subs[2].classList.replace("outline-top-to-active-Class", "none");}.bind(subs), 500);
-			subs[3].classList.replace("none", "top-to-active-Class"); setTimeout(function(){
-			subs[3].classList.replace("top-to-active-Class", "none");}.bind(subs), 750);
-		}
-		if (clicked.classList.item(4) != "left")
-		{
-			subs[4].classList.replace("none", "outline-popAnime-left-Class"); setTimeout(function(){
-			subs[4].classList.replace("outline-popAnime-left-Class", "none");}.bind(subs), 500);
-			subs[5].classList.replace("none", "popAnime-left-Class"); setTimeout(function(){
-			subs[5].classList.replace("popAnime-left-Class", "none");}.bind(subs), 750);
-		}
-		else
-		{
-			subs[4].classList.replace("none", "outline-left-to-active-Class"); setTimeout(function(){
-			subs[4].classList.replace("outline-left-to-active-Class", "none");}.bind(subs), 500);
-			subs[5].classList.replace("none", "left-to-active-Class"); setTimeout(function(){
-			subs[5].classList.replace("left-to-active-Class", "none");}.bind(subs), 750);
-		}
-		if (clicked.classList.item(4) != "down")
-		{
-			subs[6].classList.replace("none", "outline-popAnime-down-Class"); setTimeout(function(){
-			subs[6].classList.replace("outline-popAnime-down-Class", "none");}.bind(subs), 750);
-			subs[7].classList.replace("none", "popAnime-down-Class"); setTimeout(function(){
-			subs[7].classList.replace("popAnime-down-Class", "none");}.bind(subs), 750);
-		}
-		else
-		{
-			subs[6].classList.replace("none", "outline-down-to-active-Class"); setTimeout(function(){
-			subs[6].classList.replace("outline-down-to-active-Class", "none");}.bind(subs), 500);
-			subs[7].classList.replace("none", "down-to-active-Class"); setTimeout(function(){
-			subs[7].classList.replace("down-to-active-Class", "none");}.bind(subs), 750);
-		}
-		
-		/*                      */
 	}
-	ican = true;
+	Update();
 }
 
 function Dezoom()
 {
-	var activeCount = document.getElementsByClassName("active").length;
-	var subActiveCount = document.getElementsByClassName("sub-active").length;
-	if (activeCount == 2 && subActiveCount == 8)
+	/*
+	level:
+		0:
+			if any of root's childs is sub-active:
+				root's childs animation sub-active -> inactive
+			else:
+				cannot dezoom any further
+		1:
+			active's childs animation sub-active -> inactive
+			active's parent animation inactive -> active
+			active animation active -> sub-active
+			sub-active's bros animation inactive -> sub-active
+		2:
+			active's parent animation inactive -> active 
+			active animation active -> sub-active
+			sub-active's bros animation inactive -> sub-active
+	*/
+	Update();
+	const act = document.getElementsByClassName("active")[1];
+	const level = act.classList.item(1);
+	let parent = document.getElementById(act.classList.item(3));
+	if (level == 0)
 	{
-		/* highest Dezoom, just hides subs of root and shows back h1 */
-		var subs = document.getElementsByClassName("sub-active");
-		for (var i = subs.length - 1; i >= 0; i--)
+		if (document.getElementById("Updates").classList.item(0) == "sub-active")
 		{
-			subs[i].style.visibility = "hidden";
+			/* go Home */
+			for (child of getChilds(["Updates","Presentation","Download","AboutUs"]))
+			{
+				set(child[1] + "animation inactive -> sub-active", child[0].classList, 8);
+				set("sub-active", child[0].classList, 0);
+			}
 		}
-		document.getElementById("h1").style.visibility = "visible";
-		document.getElementById("root").style.pointerEvents = "all";
-		onLoad = true;
-		return true;
+		else
+		{
+			/* at Home */
+		}
 	}
-	else if (activeCount == 2 && subActiveCount == 0)
+	else if (level == 1 || level == 2)
 	{
-		/* lowest Dezoom */
-		var bros = document.getElementsByClassName(document.getElementsByClassName("active")[1].classList.item(2));
-		for (var i = bros.length - 1; i >= 0; i--)
+		if (level == 1)
 		{
-			bros[i].classList.replace("active", "sub-active");
-			bros[i].classList.replace("inactive", "sub-active");
-			bros[i].style.visibility = "visible";
+			/* active's childs animation sub-active -> inactive */
+			for (child of getChilds(act.classList.item(4)))
+			{
+				set(child[1] + " animation sub-active -> inactive", child[0].classList, 8);
+				set("inactive", child[0].classList, 0);
+			}
 		}
-		for (var i = 0; i < 2; i++)
+		/* active's parent animation inactive -> active */
+		set("animation inactive -> active", parent.classList, 8);
+		set("active", parent.classList, 0);
+		/* active animation active -> sub-active */
+		set( act.classList.item(2) + " animation active -> sub-active", act.classList, 8);
+		set("sub-active", act.classList, 0);
+		/* sub-active's bros animation inactive -> sub-active */
+		for (bro of getBros(act, level))
 		{
-			bros[i].classList.replace("sub-active", "active");
+			set(bro[1] + " animation inactive -> sub-active", bro[0].classList, 8);
+			set("sub-active", bro[0].classList, 0);
 		}
-		 
 	}
-	else
-	{
-		/* intermediate Dezoom */
-		var bros = document.getElementsByClassName( document.getElementsByClassName("active")[1].classList.item(3) );
-		for (var i = bros.length - 1; i >= 0; i--)
-		{
-			bros[i].classList.replace("sub-active", "inactive");
-			bros[i].style.visibility = "hidden";
-			/*bros[i].style.pointerEvents = "none";*/
-		}
-		var subs = document.getElementsByClassName("sub0");
-		for (var i = subs.length - 1; i >= 0; i--)
-		{
-			subs[i].classList.replace("inactive", "sub-active");
-			subs[i].classList.replace("active", "sub-active");
-			subs[i].style.visibility = "visible";
-			/*subs[i].style.pointerEvents = "all";*/
-		}
-		
-		var root = document.getElementById("root"); root.classList.replace("sub-active", "active"); root.style.visibility = "visible";
-		var outlineRoot = document.getElementById("outline-root"); outlineRoot.classList.replace("sub-active", "active"); outlineRoot.style.visibility = "visible";
-
-	}
-	setTimeout(function(){ican = true;}, 750);
+	Update();
 }
-
-document.addEventListener("wheel", function(e)
-{
-    if (e.deltaY > 0 && ican && document.getElementsByClassName("none").length == 34)
-	{
-		ican = false;
-		Dezoom();
-	}
-});

@@ -8,91 +8,146 @@
 	<title>The Azure Stone</title>
 </head>
 <body>
-	<div class="inactive null sub0 sub1 outline-root none"			id="outline-root"></div>
-	<div class="inactive null sub0 sub1 root none"					id="root"></div>
-	<div id="h1"><h1>The Azure Stone</h1></div>
 
 	<!--
-		class="active/sub-active/inactive upperClass currentClass nextClass emplacement AnimationClass"
-	right: Updates, Lore, Mac, Community
-	top: Presentation, Upcoming, Windows, Staff
-	left: Download, Patch note, Gameplay, Discord
-	down: About us, History, Guide, Linux
+	params:
+		state: inactive, sub-active, active
+		level: 0, 1, 2
+		emplacement: right, top, left, down
+		type: root, menu, page, outline, content
+		currentAnimation: which animation it is currently on, noNameAnimation if none
+		animation: inAnimation while in animation, notInAnimation otherwise
+
+	root, menu, page:
+		<div
+			id = "ID"
+			class =	"
+					state
+					level
+					emplacement
+					parentID
+					childsIDs
+					outlineID
+					contentID
+					root, menu, page
+					currentAnimation
+					animation
+					diamond
+					">
+		</div>
+
+	outline, content:
+		<div
+			id = "ID"
+			class =	"
+					state
+					level
+					emplacement
+					outline, content
+					currentAnimation
+					animation
+					">
+		</div>
+	classes of outlines and content of each diamond will follow
 	-->
 
+	<!--                         level 0                         -->
+
+	<div id = "root-outline"></div>
+	<div id = "root" class = "active 0 none null Updates,Presentation,Download,AboutUs root-outline root-content root transition off diamond all"></div>
+	<div id = "root-content"><h1 id="h1">The Azure Stone</h1></div>
+	
+	<!--                         level 1                         -->
+
+	<!--Updates-->
+
+	<div id = "Updates-outline"></div>
+	<div id = "Updates" class = "inactive 1 right root UpComing,PatchNote,History Updates-outline Updates-content menu transition off diamond all"></div>
+	<div id = "Updates-content"><p>Updates</p></div>
+
+	<!--Presentation-->
+
+	<div id = "Presentation-outline"></div>
+	<div id = "Presentation" class = "inactive 1 top root Lore,Gameplay,Guide Presentation-outline Presentation-content menu transition off diamond all"></div>
+	<div id = "Presentation-content"><p>Presentation</p></div>
+	
+	<!--Download-->
+
+	<div id = "Download-outline"></div>
+	<div id = "Download" class = "inactive 1 left root Mac,Windows,Linux Download-outline Download-content menu transition off diamond all"></div>
+	<div id = "Download-content"><p>Download</p></div>
+	
+	<!--AboutUs-->
+
+	<div id = "AboutUs-outline"></div>
+	<div id = "AboutUs" class = "inactive 1 down root Community,Staff,Discord AboutUs-outline AboutUs-content menu transition off diamond all"></div>
+	<div id = "AboutUs-content"><p>About Us</p></div>
+
+	<!--                         level 2                         -->
+
+	<!--Updates subs-->
+
+	<div id = "UpComing-outline"></div>
+	<div id = "UpComing" class = "inactive 2 top Updates null UpComing-outline UpComing-content page transition off diamond all"></div>
+	<div id = "UpComing-content"></div>
+	
+
+	<div id = "PatchNote-outline"></div>
+	<div id = "PatchNote" class = "inactive 2 left Updates null PatchNote-outline PatchNote-content page transition off diamond all"></div>
+	<div id = "PatchNote-content"></div>
 
 
+	<div id = "History-outline"></div>
+	<div id = "History" class = "inactive 2 down Updates null History-outline History-content page transition off diamond all"></div>
+	<div id = "History-content"></div>
+
+	<!--Presentation subs-->
+
+	<div id = "Lore-outline"></div>
+	<div id = "Lore" class = "inactive 2 right Presentation null Lore-outline Lore-content page transition off diamond all"></div>
+	<div id = "Lore-content"></div>
 
 
-	<div class="inactive sub0 sub1 sub2-right outline-right none"	id="outline-Updates"></div>
-	<div class="inactive sub0 sub1 sub2-right right none"			id="Updates">Updates</div>
+	<div id = "Gameplay-outline"></div>
+	<div id = "Gameplay" class = "inactive 2 left Presentation null Gameplay-outline Gameplay-content page transition off diamond all"></div>
+	<div id = "Gameplay-content"></div>
 
 
-	<div class="inactive sub1 sub2-right null outline-top none"		id="outline-Updates-Upcoming"></div>
-	<div class="inactive sub1 sub2-right null top none"				id="Updates-Upcoming"></div>
+	<div id = "Guide-outline"></div>
+	<div id = "Guide" class = "inactive 2 down Presentation null Guide-outline Guide-content page transition off diamond all"></div>
+	<div id = "Guide-content"></div>
 
-	<div class="inactive sub1 sub2-right null outline-left none"	id="outline-Updates-Patch-note"></div>
-	<div class="inactive sub1 sub2-right null left none"			id="Updates-Patch-note"></div>
+	<!--Download subs-->
 
-	<div class="inactive sub1 sub2-right null outline-down none"	id="outline-Updates-History"></div>
-	<div class="inactive sub1 sub2-right null down none"			id="Updates-History"></div>
-
-
-
+	<div id = "Mac-outline"></div>
+	<div id = "Mac" class = "inactive 2 right Download null Mac-outline Mac-content page transition off diamond all"></div>
+	<div id = "Mac-content"></div>
 
 
-	<div class="inactive sub1 sub2-top null outline-right none"		id="outline-Presentation-Lore"></div>
-	<div class="inactive sub1 sub2-top null right none"				id="Presentation-Lore"></div>
+	<div id = "Windows-outline"></div>
+	<div id = "Windows" class = "inactive 2 top Download null Windows-outline Windows-content page transition off diamond all"></div>
+	<div id = "Windows-content"></div>
 
 
-	<div class="inactive sub0 sub1 sub2-top outline-top none"		id="outline-Presentation"></div>
-	<div class="inactive sub0 sub1 sub2-top top none"				id="Presentation">Presentation</div>
+	<div id = "Linux-outline"></div>
+	<div id = "Linux" class = "inactive 2 down Download null Linux-outline Linux-content page transition off diamond all"></div>
+	<div id = "Linux-content"></div>
+
+	<!--AboutUs subs-->
+
+	<div id = "Community-outline"></div>
+	<div id = "Community" class = "inactive 2 right AboutUs null Community-outline Community-content page transition off diamond all"></div>
+	<div id = "Community-content"></div>
 
 
-	<div class="inactive sub1 sub2-top null outline-left none"		id="outline-Presentation-Gameplay"></div>
-	<div class="inactive sub1 sub2-top null left none"				id="Presentation-Gameplay"></div>
-
-	<div class="inactive sub1 sub2-top null outline-down none"		id="outline-Presentation-Guide"></div>
-	<div class="inactive sub1 sub2-top null down none"				id="Presentation-Guide"></div>
+	<div id = "Staff-outline"></div>
+	<div id = "Staff" class = "inactive 2 top AboutUs null Staff-outline Staff-content page transition off diamond all"></div>
+	<div id = "Staff-content"></div>
 
 
-
-
-
-	<div class="inactive sub1 sub2-left null outline-right none"	id="outline-Download-Mac"></div>
-	<div class="inactive sub1 sub2-left null right none"			id="Download-Mac"></div>
-
-	<div class="inactive sub1 sub2-left null outline-top none"		id="outline-Download-Windows"></div>
-	<div class="inactive sub1 sub2-left null top none"				id="Download-Windows"></div>
-
-
-	<div class="inactive sub0 sub1 sub2-left outline-left none"		id="outline-Download"></div>
-	<div class="inactive sub0 sub1 sub2-left left none"				id="Download">Download</div>
-
-
-	<div class="inactive sub1 sub2-left null outline-down none"		id="outline-Download-Linux"></div>
-	<div class="inactive sub1 sub2-left null down none"				id="Download-Linux"></div>
-
-
-
-
-
-	<div class="inactive sub1 sub2-down null outline-right none"	id="outline-About-us-Community"></div>
-	<div class="inactive sub1 sub2-down null right none"			id="About-us-Community"></div>
-
-	<div class="inactive sub1 sub2-down null outline-top none"		id="outline-About-us-Staff"></div>
-	<div class="inactive sub1 sub2-down null top none"				id="About-us-Staff"></div>
-
-	<div class="inactive sub1 sub2-down null outline-left none"		id="outline-About-us-Discord"></div>
-	<div class="inactive sub1 sub2-down null left none"				id="About-us-Discord"></div>
-
-
-	<div class="inactive sub0 sub1 sub2-down outline-down none"		id="outline-About-us"></div>
-	<div class="inactive sub0 sub1 sub2-down down none"				id="About-us">About us</div>
-
-
-
-
+	<div id = "Discord-outline"></div>
+	<div id = "Discord" class = "inactive 2 left AboutUs null Discord-outline Discord-content page transition off diamond all"></div>
+	<div id = "Discord-content"></div>
 
 </body>
 </html>

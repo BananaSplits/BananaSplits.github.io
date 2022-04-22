@@ -1,22 +1,35 @@
-/*                                                             Global Variables                                                            */
+/*                                                             Global Variables                                                             */
 
 :root
 {
 
 	--width: 100vw;
 	--height: 100vh;
+
 	--active: 1.1;
+	--active-outline: 1.13;
+	
 	--sub: 0.8;
-	--active-outline: 1.130;
-	--sub-outline: 0.830;
+	--sub-outline: 0.83;
+	
+	--page: 0.9;
+	--page-outline: 0.93;
+	
 	--marginy: calc((1/50)*var(--height));
 	--marginx: calc((1/50)*var(--width));
 
 }
 
-/*                                                                Generalities                                                              */
+/*                                                             CUSTOM                                                             
+*/
 
-body, .content
+/* add your own styles here, use unique IDs */
+
+
+
+/*                                                             Generalities                                                             */
+
+body, .title, .content
 {
 	overflow: hidden !important;
 }
@@ -25,9 +38,14 @@ body
 {
 	overflow-anchor: none !important;
 
+	/*                          BACKGROUND HERE                          */
+
 	background-image: url("https://foodtank.com/wp-content/uploads/2020/04/COVID-19-Relief_Small-Farms-.jpg");
 	background-repeat: no-repeat;
 	background-size: 100vw;
+
+	/*                                                                  */
+
 	margin: 0;
 }
 
@@ -36,7 +54,7 @@ body
 	position: absolute;
 }
 
-.outline, .content, .on
+.outline, .title, .content:not(.page.active), .on
 {
 	pointer-events: none !important;
 }
@@ -46,25 +64,53 @@ body
 	pointer-events: all;
 }
 
-/*                                                                Texts                                                              */
+/*                                                             Texts                                                             */
 
-.content
+/* text wrappers */
+
+.tw
+{
+	height:	100%;
+	width: 50%;
+	/*background-color: black;*/
+}
+
+.twl
+{
+	/*clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%, 100% 99%, 40% 99%, 1% 79%, 1% 21%, 40% 1%, 100% 1%);*/
+	shape-outside: polygon(100% 0, 0 0, 0 100%, 100% 100%, 100% 99%, 40% 99%, 1% 79%, 1% 21%, 40% 1%, 100% 1%);
+	float: left;
+	
+}
+
+.twr
+{
+	/*clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 99%, 60% 99%, 99% 79%, 99% 21%, 60% 1%, 0 1%);*/
+	shape-outside: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 99%, 60% 99%, 99% 79%, 99% 21%, 60% 1%, 0 1%);
+	float: right;
+	
+}
+
+/* general text alignment */
+
+.title, .content.menu
 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.content p
+.title p, .content.menu p
 {
 	margin: 0;
 	font-family: "Lucida Console", "Courier New", monospace;
 	font-size: calc( var(--width) / 30 );
 }
 
+/* The Azure Stone */
+
 #h1
 {
-	transform: translate( calc( (-1/2) * ( var(--width) * var(--active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active) - var(--height) ) ) );
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	font-size: calc( var(--width) / 15 );
 	word-spacing: 2.4px;
@@ -76,56 +122,92 @@ body
 	text-transform: none;
 }
 
-/*                                                                Positions                                                              */
+/*                                                             Positions                                                             */
 
 /* actives */
 
-.outline.active
+.outline.active:not(.page)
 {
 	transform: translate( calc( (-1/2) * ( var(--width) * var(--active-outline) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active-outline) - var(--height) ) ) );
 }
 
-.diamond.active
+.diamond.active:not(.page), .title.active:not(.page), .content.active:not(.page)
 {
 	transform: translate( calc( (-1/2) * ( var(--width) * var(--active) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--active) - var(--height) ) ) );
 }
 
+.outline.page.active
+{
+	transform: translate( calc( (-1/2) * ( var(--width) * var(--page-outline) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--page-outline) - var(--height) ) ) );
+}
+.diamond.page.active, .content.page.active
+{
+	transform: translate( calc( (-1/2) * ( var(--width) * var(--page) - var(--width) ) ) , calc( (-1/2) * ( var(--height) * var(--page) - var(--height) ) ) );
+}
+
 /* sub-actives, inactive */
 
-.sub-active.right, .inactive.right
+.sub-active.right, .inactive.right, .content.menu.active.right
 {
 	transform: translate( calc( var(--width) - 100% - var(--marginx) ) , calc( (1/2) * var(--height) - 50% ) );
 }
 
-.sub-active.top, .inactive.top
+.sub-active.top, .inactive.top, .content.menu.active.top
 {
 	transform: translate( calc( (1/2) * var(--width) - 50% ) , var(--marginy) );
 }
 
-.sub-active.left, .inactive.left
+.sub-active.left, .inactive.left, .content.menu.active.left
 {
 	transform: translate( var(--marginx) , calc( (1/2) * var(--height) - 50% ) );
 }
 
-.sub-active.down, .inactive.down
+.sub-active.down, .inactive.down, .content.menu.active.down
 {
 	transform: translate( calc( (1/2) * var(--width) - 50% ) , calc( var(--height) - 100% - var(--marginy) ) );
 }
 
-/*                                                                  Sizes                                                                */
+/* back button */
+
+#back-button
+{
+	position: fixed;
+	top: calc(var(--height)/20);
+	left: calc(var(--width)/40);
+}
+
+/* pages titles */
+
+.title.page.active
+{
+	transform: translate( calc( (1/2) * var(--width) - 50% ) , calc( (-5) * var(--marginy) ) );
+}
+
+/*                                                             Sizes                                                             */
 
 /* actives */
 
-.outline.active
+.outline.active:not(.page)
 {
 	width: calc(var(--width)*var(--active-outline));
 	height: calc(var(--height)*var(--active-outline));
 }
 
-.diamond.active, .content.active
+.diamond.active:not(.page), .title.active, .content.active:not(.page)
 {
 	width: calc(var(--width)*var(--active));
 	height: calc(var(--height)*var(--active));
+}
+
+.outline.page.active
+{
+	width: calc(var(--width)*var(--page-outline));
+	height: calc(var(--height)*var(--page-outline));
+}
+.diamond.page.active, .content.page.active
+{
+	width: calc(var(--width)*var(--page));
+	height: calc(var(--height)*var(--page));
 }
 
 /* sub-actives */
@@ -136,7 +218,7 @@ body
 	height: calc(var(--height)/2*var(--sub-outline));
 }
 
-.diamond.sub-active, .content.sub-active
+.diamond.sub-active, .title.sub-active, .content.sub-active, .content.menu.active, .title.page.active
 {
 	width: calc(var(--width)/2*var(--sub));
 	height: calc(var(--height)/2*var(--sub));
@@ -144,13 +226,21 @@ body
 
 /* inactives */
 
-.outline.inactive.off:not(#root-outline), .diamond.inactive.off:not(#root), .content.inactive.off:not(#root-content)
+.outline.inactive, .diamond.inactive, .title.inactive, .content.inactive
 {
 	width: 0;
 	height: 0;
 }
 
-/*                                                                  Z-indexes                                                                */
+/* back button */
+
+#back-button
+{
+	height: calc(var(--height)/20);
+	width: calc(var(--width)/40);
+}
+
+/*                                                             Z-indexes                                                             */
 
 /* actives */
 
@@ -169,21 +259,31 @@ body
 	z-index: 3;
 }
 
-/* sub-actives */
-
-.outline.sub-active
+.title.active
 {
 	z-index: 4;
 }
 
-.diamond.sub-active
+/* sub-actives */
+
+.outline.sub-active
 {
 	z-index: 5;
 }
 
-.content.sub-active
+.diamond.sub-active
 {
 	z-index: 6;
+}
+
+.content.sub-active
+{
+	z-index: 7;
+}
+
+.title.sub-active
+{
+	z-index: 8;
 }
 
 /* inactives */
@@ -193,14 +293,18 @@ body
 	z-index: 0;
 }
 
-/*                                                                Shapes and Colors                                                                  */
+/*                                                             Shapes and Colors                                                             */
 
 /*           all           */
 
-
-.outline, .diamond
+.all:not(.page.active)
 {
 	clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+.page.active
+{
+	clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
 }
 
 .outline
@@ -216,42 +320,31 @@ body
 	background-color: black;
 }
 
-
 /*           level 0           */
-
 
 #root
 {
 	background-color: #2C5437;
 }
 
-
 /*           level 1           */
-
 
 #Updates
 {
 	background-color: #A06000;
 }
-
-
 #Presentation
 {
 	background-color: #5BA058;
 }
-
-
 #Download
 {
 	background-color: #A03939;
 }
-
-
 #AboutUs
 {
 	background-color: #A09530;
 }
-
 
 /*           level 2           */
 
@@ -308,39 +401,52 @@ body
 	background-color: #666AA0;
 }
 
-/*                                                                 Transitions                                                                    */
-
-/* fadeOut */
-
-.fadeOut
-{
-	transition-property: opacity;
-	transition-duration: 10s;
-}
-
-.fadeOut-outline
-{
-	transition-property: opacity;
-	transition-duration: 10s;
-}
-
-/* h1 fadeOut */
+/* The Azure Stone */
 
 .h1-fadeOut
 {
 	opacity: 0;
-	letter-spacing: 10px;
-	transition-property: opacity, letter-spacing;
-	transition-duration: 10s;
+	letter-spacing: 20px;
 }
 
-.transition
+.h1-fadeIn
+{
+	opacity: 1;
+	letter-spacing: none;
+}
+
+.content.sub-active, .title.active:not(#root-title, .page)
+{
+	opacity: 0;
+}
+
+/*                                                             Transitions                                                             */
+
+/* The Azure Stone */
+
+#h1
+{
+	transition-property: opacity, letter-spacing;
+	transition-duration: 0.8s;
+}
+
+/* menu titles */
+
+.content.menu.active
+{
+	transition-property: opacity;
+	transition-duration: 0.8s;
+}
+
+/* state transitions */
+
+.title, .diamond, .content
 {
 	transition-property: width, height, transform;
-	transition-duration: 10s;
+	transition-duration: 1s;
 }
 
-.outline.transition
+.outline
 {
-	transition-duration: 10s;
+	transition-duration: 0.9s;
 }

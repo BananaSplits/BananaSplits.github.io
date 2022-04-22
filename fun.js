@@ -8,17 +8,18 @@ classList items of type:
 		3: parentID
 		4: childsIDs
 		5: outlineID
-		6: contentID
-		7: type
-		8: transition
-		9: on/off
+		6: titleID
+		7: contentID
+		8: type
+		9: transition
+		10: on/off
 
-	outline, content:
+	outline, title, content:
 		0: state	
 		1: level
 		2: emplacement
-		3: type
-		4: transition
+		3: parent's type
+		4: type
 		5: on/off
 */
 
@@ -62,14 +63,16 @@ function getBros(clicked, level)
 /* runs on load once, page renders after this process ends */
 window.onload = function main()
 {
+	backButton = document.getElementById("back-button");
 	/* initialize all outlines and contents classes of every diamond, and adds its onclick event */
 	var diamonds = document.getElementsByClassName("diamond");
 	for (const diamond of diamonds)
 	{
 		var cl = diamond.classList;
-		var cn = cl.item(0)+" "+cl.item(1)+" "+cl.item(2);
-		document.getElementById( cl.item(5) ).className = cn+" outline transition off all";
-		document.getElementById( cl.item(6) ).className = cn+" content transition off all";
+		var cn = cl.item(0)+" "+cl.item(1)+" "+cl.item(2)+" "+cl.item(8);
+		document.getElementById( cl.item(5) ).className = cn+" outline off all";
+		document.getElementById( cl.item(6) ).className = cn+" title off all";
+		document.getElementById( cl.item(7) ).className = cn+" content off all";
 		/* Zoom(clickedID, parentID, childsIDs, level); */
 		diamond.setAttribute("onclick", "Zoom('"+ diamond.id +"','"
 												+ diamond.classList.item(3) +"', '"
@@ -77,14 +80,16 @@ window.onload = function main()
 												+ diamond.classList.item(1) +"');");
 		diamond.addEventListener('transitionstart', function() {
 			diamond.classList.replace("off", "on");
+			backButton.setAttribute("disabled", "");
 		});
 		diamond.addEventListener('transitionend', function() {
 			diamond.classList.replace("on", "off");
-			if (diamond.classList.item(0) == "inactive")
+			backButton.removeAttribute("disabled");
+			/*if (diamond.classList.item(0) == "inactive")
 			{
 				diamond.style.setProperty("width", 0);
 				diamond.style.setProperty("height", 0);
-			}
+			}*/
 		});
 	}
 }
@@ -98,14 +103,12 @@ function Update()
 	var diamonds = document.getElementsByClassName("diamond");
 	for (const diamond of diamonds)
 	{
-		/* state */
-		for (i of [5, 6]){ set(diamond.classList.item(0), document.getElementById( diamond.classList.item(i) ).classList, 0 ); }
-		/* transition */
-	/*
-		set(diamond.classList.item(8) + "-outline", document.getElementById( diamond.classList.item(5) ).classList, 4 );
-		set(diamond.classList.item(8), document.getElementById( diamond.classList.item(6) ).classList, 4 );*/
-		/* on/off */
-		for (i of [5, 6]){ set(diamond.classList.item(9), document.getElementById( diamond.classList.item(i) ).classList, 5 ); }
+		/* state, on/off */
+		for (i of [5, 6, 7])
+		{
+			set(diamond.classList.item(0), document.getElementById( diamond.classList.item(i) ).classList, 0 );
+			set(diamond.classList.item(10), document.getElementById( diamond.classList.item(i) ).classList, 5 );
+		}
 	}
 }
 
@@ -148,7 +151,6 @@ function Zoom(clickedID, parentID, childsIDs, level)
 			set("inactive", bro[0].classList, 0);
 		}
 		/* clicked animation sub-active -> active */
-		console.log("allez");
 		/*set(clicked.classList.item(2) + "-sub-active-to-active", clicked.classList, 8);*/
 		set("active", clicked.classList, 0);
 		/* clicked childs inactive -> sub-active */
@@ -188,20 +190,23 @@ function Dezoom()
 	const act = document.getElementsByClassName("active")[1];
 	const level = act.classList.item(1);
 	let parent = document.getElementById(act.classList.item(3));
+	/*console.log(act.id, level, parent.id);*/
 	if (level == 0)
 	{
 		if (document.getElementById("Updates").classList.item(0) == "sub-active")
 		{
 			/* go Home */
-			for (child of getChilds(["Updates","Presentation","Download","AboutUs"]))
+			for (child of getChilds("Updates,Presentation,Download,AboutUs"))
 			{
-				set(child[1] + "animation inactive -> sub-active", child[0].classList, 8);
-				set("sub-active", child[0].classList, 0);
+				/*set(child[1] + "animation inactive -> sub-active", child[0].classList, 8);*/
+				set("inactive", child[0].classList, 0);
 			}
+			document.getElementById("h1").className = "h1-fadeIn";
 		}
 		else
 		{
 			/* at Home */
+			backButton.setAttribute("disabled", "");
 		}
 	}
 	else if (level == 1 || level == 2)
@@ -211,20 +216,20 @@ function Dezoom()
 			/* active's childs animation sub-active -> inactive */
 			for (child of getChilds(act.classList.item(4)))
 			{
-				set(child[1] + " animation sub-active -> inactive", child[0].classList, 8);
+				/*set(child[1] + " animation sub-active -> inactive", child[0].classList, 8);*/
 				set("inactive", child[0].classList, 0);
 			}
 		}
 		/* active's parent animation inactive -> active */
-		set("animation inactive -> active", parent.classList, 8);
+		/*set("animation inactive -> active", parent.classList, 8);*/
 		set("active", parent.classList, 0);
 		/* active animation active -> sub-active */
-		set( act.classList.item(2) + " animation active -> sub-active", act.classList, 8);
+		/*set( act.classList.item(2) + " animation active -> sub-active", act.classList, 8);*/
 		set("sub-active", act.classList, 0);
 		/* sub-active's bros animation inactive -> sub-active */
 		for (bro of getBros(act, level))
 		{
-			set(bro[1] + " animation inactive -> sub-active", bro[0].classList, 8);
+			/*set(bro[1] + " animation inactive -> sub-active", bro[0].classList, 8);*/
 			set("sub-active", bro[0].classList, 0);
 		}
 	}

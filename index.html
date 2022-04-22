@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+	<script src="fun.js"></script>
+	<title>The Azure Stone</title>
+</head>
+<body>
+
+	<!--
+	params:
+		state: inactive, sub-active, active
+		level: 0, 1, 2
+		emplacement: right, top, left, down
+		type: root, menu, page, outline, content
+		currentAnimation: which animation it is currently on, noNameAnimation if none
+		animation: inAnimation while in animation, notInAnimation otherwise
+
+	root, menu, page:
+		<div
+			id = "ID"
+			class =	"
+					state
+					level
+					emplacement
+					parentID
+					childsIDs
+					outlineID
+					TitleID
+					contentID
+					root, menu, page
+					currentAnimation
+					animation
+					diamond
+					">
+		</div>
+
+	outline, title, content:
+		<div
+			id = "ID"
+			class =	"
+					state
+					level
+					emplacement
+					root, menu, page
+					outline, title, content
+					on/off
+					">
+		</div>
+	classes of outlines and content of each diamond will follow
+	-->
+
+	<button id="back-button" onclick="Dezoom();" disabled><-</button>
+
+	<!--                         level 0                         -->
+
+	<div id = "root-outline"></div>
+	<div id = "root" class = "active 0 none null Updates,Presentation,Download,AboutUs root-outline root-title root-content root transition off diamond all"></div>
+	<div id = "root-title"><h1 id="h1">The Azure Stone</h1></div>
+	<div id = "root-content"></div>
+	
+	<!--                         level 1                         -->
+
+	<!--Updates-->
+
+	<div id = "Updates-outline"></div>
+	<div id = "Updates" class = "inactive 1 right root UpComing,PatchNote,History Updates-outline Updates-title Updates-content menu transition off diamond all"></div>
+	<div id = "Updates-title"><p>Updates</p></div>
+	<div id = "Updates-content"><p>Updates</p></div>
+
+	<!--Presentation-->
+
+	<div id = "Presentation-outline"></div>
+	<div id = "Presentation" class = "inactive 1 top root Lore,Gameplay,Guide Presentation-outline Presentation-title Presentation-content menu transition off diamond all"></div>
+	<div id = "Presentation-title"><p>Presentation</p></div>
+	<div id = "Presentation-content"><p>Presentation</p></div>
+	
+	<!--Download-->
+
+	<div id = "Download-outline"></div>
+	<div id = "Download" class = "inactive 1 left root Mac,Windows,Linux Download-outline Download-title Download-content menu transition off diamond all"></div>
+	<div id = "Download-title"><p>Download</p></div>
+	<div id = "Download-content"><p>Download</p></div>
+	
+	<!--AboutUs-->
+
+	<div id = "AboutUs-outline"></div>
+	<div id = "AboutUs" class = "inactive 1 down root Community,Staff,Discord AboutUs-outline AboutUs-title AboutUs-content menu transition off diamond all">aboutus</div>
+	<div id = "AboutUs-title"><p>About Us</p></div>
+	<div id = "AboutUs-content"><p>About Us</p></div>
+
+	<!--                         level 2                         -->
+
+	<!--Updates subs-->
+	
+	<div id = "UpComing-outline"></div>
+	<div id = "UpComing" class = "inactive 2 top Updates null UpComing-outline UpComing-title UpComing-content page transition off diamond all"><p>Up coming</p></div>
+	<div id = "UpComing-title"><p>Upcoming</p></div>
+	<div id = "UpComing-content"><div class="tw twl"></div><div class="tw twr"></div><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leies, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leies, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p></div>
+
+
+	<div id = "PatchNote-outline"></div>
+	<div id = "PatchNote" class = "inactive 2 left Updates null PatchNote-outline PatchNote-title PatchNote-content page transition off diamond all"></div>
+	<div id = "PatchNote-title"><p>Patch note</p></div>
+	<div id = "PatchNote-content"><div class="tw twl"></div><div class="tw twr"></div><p>Patch note content</p></div>
+
+
+	<div id = "History-outline"></div>
+	<div id = "History" class = "inactive 2 down Updates null History-outline History-title History-content page transition off diamond all"></div>
+	<div id = "History-title"><p>History</p></div>
+	<div id = "History-content"><div class="tw twl"></div><div class="tw twr"></div><p>History content</p></div>
+
+	<!--Presentation subs-->
+
+	<div id = "Lore-outline"></div>
+	<div id = "Lore" class = "inactive 2 right Presentation null Lore-outline Lore-title Lore-content page transition off diamond all"></div>
+	<div id = "Lore-title"><p>Lore</p></div>
+	<div id = "Lore-content"><div class="tw twl"></div><div class="tw twr"></div><p>Lore content</p></div>
+
+
+	<div id = "Gameplay-outline"></div>
+	<div id = "Gameplay" class = "inactive 2 left Presentation null Gameplay-outline Gameplay-title Gameplay-content page transition off diamond all"></div>
+	<div id = "Gameplay-title"><p>Gameplay</p></div>
+	<div id = "Gameplay-content"><div class="tw twl"></div><div class="tw twr"></div><p>Gameplay content</p></div>
+
+
+	<div id = "Guide-outline"></div>
+	<div id = "Guide" class = "inactive 2 down Presentation null Guide-outline Guide-title Guide-content page transition off diamond all"></div>
+	<div id = "Guide-title"><p>Guide</p></div>
+	<div id = "Guide-content"><div class="tw twl"></div><div class="tw twr"></div><p>Guide content</p></div>
+
+	<!--Download subs-->
+
+	<div id = "Mac-outline"></div>
+	<div id = "Mac" class = "inactive 2 right Download null Mac-outline Mac-title Mac-content page transition off diamond all"></div>
+	<div id = "Mac-title"><p>Mac</p></div>
+	<div id = "Mac-content"><div class="tw twl"></div><div class="tw twr"></div><p>Mac content</p></div>
+
+
+	<div id = "Windows-outline"></div>
+	<div id = "Windows" class = "inactive 2 top Download null Windows-outline Windows-title Windows-content page transition off diamond all"></div>
+	<div id = "Windows-title"><p>Windows</p></div>
+	<div id = "Windows-content"><div class="tw twl"></div><div class="tw twr"></div><p>Windows content</p></div>
+
+
+	<div id = "Linux-outline"></div>
+	<div id = "Linux" class = "inactive 2 down Download null Linux-outline Linux-title Linux-content page transition off diamond all"></div>
+	<div id = "Linux-title"><p>Linux</p></div>
+	<div id = "Linux-content"><div class="tw twl"></div><div class="tw twr"></div><p>Linux content</p></div>
+
+	<!--AboutUs subs-->
+
+	<div id = "Community-outline"></div>
+	<div id = "Community" class = "inactive 2 right AboutUs null Community-outline Community-title Community-content page transition off diamond all"></div>
+	<div id = "Community-title"><p>Community</p></div>
+	<div id = "Community-content"><div class="tw twl"></div><div class="tw twr"></div><p>Community content</p></div>
+
+
+	<div id = "Staff-outline"></div>
+	<div id = "Staff" class = "inactive 2 top AboutUs null Staff-outline Staff-title Staff-content page transition off diamond all"></div>
+	<div id = "Staff-title"><p>Staff</p></div>
+	<div id = "Staff-content"><div class="tw twl"></div><div class="tw twr"></div><p>Staff content</p></div>
+
+
+	<div id = "Discord-outline"></div>
+	<div id = "Discord" class = "inactive 2 left AboutUs null Discord-outline Discord-title Discord-content page transition off diamond all"></div>
+	<div id = "Discord-title"><p>Discord</p></div>
+	<div id = "Discord-content"><div class="tw twl"></div><div class="tw twr"></div><p>Discord content</p></div>
+
+</body>
+</html>

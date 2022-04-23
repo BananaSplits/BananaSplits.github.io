@@ -410,6 +410,11 @@ body
 	z-index: 8;
 }
 
+.diamond.sub-active.on
+{
+	filter: opacity(0.8);
+}
+
 /* inactives */
 
 .outline.inactive
@@ -544,6 +549,8 @@ body
 	opacity: 0;
 }
 
+/* back button */
+
 #back-button
 {
 	background-image: url("backArrow.png");
@@ -555,6 +562,13 @@ body
 {
 	opacity: 0.8;
 	filter: contrast(0.5);
+}
+
+/* Other */
+
+.content.inactive
+{
+	opacity: 0;
 }
 
 /*                                                             Transitions                                                             */

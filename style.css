@@ -25,7 +25,72 @@
 
 /* add your own styles here, use unique IDs */
 
+#Staff-content div
+{
+	position: absolute;
+}
 
+#Staff-content div p
+{
+	font-family: "Lucida Console", "Courier New", monospace;
+	font-size: calc( ( var(--width) + var(--height) ) / 150 );
+	border: 5px solid black;
+	width: 300px;
+	height: 150px;
+	padding: 20px;
+}
+
+#Adrien
+{
+	left: 15%;
+	top: 10%;
+}
+#Jules
+{
+	left: 60%;
+	top: 10%;
+}
+#Amine
+{
+	left: 15%;
+	top: 50%;
+}
+#Bob
+{
+	left: 60%;
+	top: 50%;
+}
+
+#Download:hover, #Discord:hover, #Specifications:hover
+{
+	filter: brightness(0.8);
+}
+
+.tooltip
+{
+	z-index: 10;
+	display: none;
+	background: rgba(200, 200, 200, 0.5);
+	position: absolute;
+	width:auto;
+	height:auto;
+	padding: 1px;
+	border: 1px dotted white;
+}
+
+#Download:hover ~ #Download-tooltip, #Discord:hover ~ #Discord-tooltip, #Specifications:hover ~ #Specifications-tooltip
+{
+	display: block;
+}
+
+#Community-outline, #Community, #Community-title, #Community-content,
+#History-outline, #History, #History-title, #History-content
+{
+	visibility: hidden;
+}
+
+/*
+*/
 
 /*                                                             Generalities                                                             */
 
@@ -50,9 +115,20 @@ body
 	margin: 0;
 }
 
-.all
+
+
+.all:not(#root, #root-outline)
 {
 	position: absolute;
+}
+
+#root, #root-outline
+{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: calc( (-1/2) * var(--height) );
+	margin-left: calc( (-1/2) * var(--width) );
 }
 
 .outline, .title, .content:not(.page.active), .on
@@ -122,8 +198,8 @@ body
 	overflow: auto;
 	height: 80%;
 	width: 40%;
-	left: 10%;
-	top: 6%;
+	left: 13%;
+	top: 10%;
 	position: relative;
 	/*position: relative;
 	left: calc( var(--width) /20 );
@@ -196,8 +272,8 @@ body
 #back-button
 {
 	position: fixed;
-	top: calc(var(--height)/20);
-	left: calc(var(--width)/40);
+	top: -75px;
+	left: -75px;
 }
 
 /* pages titles */
@@ -259,18 +335,25 @@ body
 
 /* inactives */
 
-.outline.inactive, .diamond.inactive, .title.inactive, .content.inactive
+.outline.inactive:not(#root-outline), .diamond.inactive:not(#root), .title.inactive, .content.inactive
 {
 	width: 0;
 	height: 0;
+}
+
+.inactive#root-outline, .inactive#root
+{
+	transform: scale(0.1);
+	width: var(--width);
+	height: var(--height);
 }
 
 /* back button */
 
 #back-button
 {
-	height: calc(var(--height)/20);
-	width: calc(var(--width)/40);
+	min-height: 150px;
+	min-width: 150px;
 }
 
 /* pages img */
@@ -403,7 +486,7 @@ body
 	background-color: #915BA0;
 }
 /*Presentation subs*/
-#Lore
+#Specifications
 {
 	background-color: #A09450;
 }
@@ -459,6 +542,19 @@ body
 .content.sub-active, .title.active:not(#root-title, .page)
 {
 	opacity: 0;
+}
+
+#back-button
+{
+	background-image: url("backArrow.png");
+	background-size: cover;
+	border-radius: 50%;
+}
+
+.back-button-off
+{
+	opacity: 0.8;
+	filter: contrast(0.5);
 }
 
 /*                                                             Transitions                                                             */

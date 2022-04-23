@@ -58,7 +58,7 @@
 	classes of outlines and content of each diamond will follow
 	-->
 
-	<button id="back-button" onclick="Dezoom();" disabled><-</button>
+	<button id="back-button" class="back-button-on" onclick="Dezoom();" disabled></button>
 
 	<!--                         level 0                         -->
 
@@ -79,7 +79,7 @@
 	<!--Presentation-->
 
 	<div id = "Presentation-outline"></div>
-	<div id = "Presentation" class = "inactive 1 top root Lore,Gameplay,Guide Presentation-outline Presentation-title Presentation-content menu transition off diamond all"></div>
+	<div id = "Presentation" class = "inactive 1 top root Specifications,Gameplay,Guide Presentation-outline Presentation-title Presentation-content menu transition off diamond all"></div>
 	<div id = "Presentation-title"><p>Presentation</p></div>
 	<div id = "Presentation-content"><p>Presentation</p></div>
 	
@@ -87,6 +87,7 @@
 
 	<div id = "Download-outline"></div>
 	<div id = "Download" class = "inactive 1 left root Mac,Windows,Linux Download-outline Download-title Download-content menu transition off diamond all"></div>
+	<div id="Download-tooltip" class="tooltip">Windows download link</div>
 	<div id = "Download-title"><p>Download</p></div>
 	<div id = "Download-content"><p>Download</p></div>
 	
@@ -108,7 +109,7 @@
 		<div class="tw twl"></div>
 		<div class="tw twr"></div>
 		<img class="page-img" src="https://cdn.pixabay.com/photo/2012/08/27/14/19/mountains-55067__340.png">
-		<p class = "page-text">As this game is still in developpement, <br />As this game is still in developpement, <br />As this game is still in developpement, <br />As this game is still in developpement, <br />As this game is still in developpement, <br />As this game is still in developpement, <br />As this game is still in developpement, <br /></p>
+		<p class = "page-text">As this game is still in developpement, As this game is still in developpement, As this game is still in developpement, As this game is still in developpement, </p>
 	</div>
 
 
@@ -135,10 +136,11 @@
 
 	<!--Presentation subs-->
 
-	<div id = "Lore-outline"></div>
-	<div id = "Lore" class = "inactive 2 right Presentation null Lore-outline Lore-title Lore-content page transition off diamond all"></div>
-	<div id = "Lore-title"><p>Lore</p></div>
-	<div id = "Lore-content">
+	<div id = "Specifications-outline"></div>
+	<div id = "Specifications" class = "inactive 2 right Presentation null Specifications-outline Specifications-title Specifications-content page transition off diamond all"></div>
+	<div id="Specifications-tooltip" class="tooltip">Open link</div>
+	<div id = "Specifications-title"><p>Specifications</p></div>
+	<div id = "Specifications-content">
 		<div class="tw twl"></div>
 		<div class="tw twr"></div>
 		<img class="page-img" src="">
@@ -218,16 +220,41 @@
 	<div id = "Staff" class = "inactive 2 top AboutUs null Staff-outline Staff-title Staff-content page transition off diamond all"></div>
 	<div id = "Staff-title"><p>Staff</p></div>
 	<div id = "Staff-content">
-		<div class="tw twl"></div>
-		<div class="tw twr"></div>
-		<img class="page-img" src="">
-		<p class = "page-text">As a school project, we are only 4 actively working on the game: name1, name2, name3, name4
-		</p>
+		
+		<div id="Adrien">
+			<p id="Adrien-p">
+				Adrien, Chef du projet<br/><br/>
+				Responsable :  <br/> Multijours, RSS et Chat ; SiteWeb <br/> <br/>
+				Suppleant : <br/> Gameplay ; UI
+			</p>
+		</div>
+		<div id="Jules">
+			<p id="Jules-p">
+				Jules-Victor,<br/><br/>
+				Responsable : <br/> Gameplay <br/> <br/>
+				Suppleant : <br/> Multijoueurs, RSS et Chat ; IA ; Level Design
+			</p>
+		</div>
+		<div id="Amine">
+			<p id="Amine-p">
+				Amine,<br/><br/>
+				Responsable : <br/> Level Design ; UI
+			</p>
+		</div>
+		<div id="Bob">
+			<p id="Bob-p">
+				Bob,<br/><br/>
+				Responsable : <br/> IA <br/> <br/>
+				Suppleant : <br/> Gameplay ; SiteWeb
+			</p>
+		</div>
+
 	</div>
 
 
 	<div id = "Discord-outline"></div>
 	<div id = "Discord" class = "inactive 2 left AboutUs null Discord-outline Discord-title Discord-content page transition off diamond all"></div>
+	<div id="Discord-tooltip" class="tooltip">Open link</div>
 	<div id = "Discord-title"><p>Discord</p></div>
 	<div id = "Discord-content">
 		<div class="tw twl"></div>

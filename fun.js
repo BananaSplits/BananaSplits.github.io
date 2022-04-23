@@ -81,10 +81,12 @@ window.onload = function main()
 		diamond.addEventListener('transitionstart', function() {
 			diamond.classList.replace("off", "on");
 			backButton.setAttribute("disabled", "");
+			backButton.classList.replace("back-button-on", "back-button-off");
 		});
 		diamond.addEventListener('transitionend', function() {
 			diamond.classList.replace("on", "off");
 			backButton.removeAttribute("disabled");
+			backButton.classList.replace("back-button-off", "back-button-on");
 			/*if (diamond.classList.item(0) == "inactive")
 			{
 				diamond.style.setProperty("width", 0);
@@ -92,6 +94,38 @@ window.onload = function main()
 			}*/
 		});
 	}
+
+	/*                                                              CUSTOM
+	*/
+
+	const WindowsDownloadLink = "";
+	const DiscordLink = "";
+	const SpecificationsLink = "https://cdn.discordapp.com/attachments/934591453718544404/937795269616087070/Cahier_des_charges_V2.pdf";
+
+	/* making Download and Discord clickable */
+
+	const dl = document.getElementById("Download");
+	dl.addEventListener('mousemove', follow);
+	dl.onclick = function(){ window.open(WindowsDownloadLink) };
+
+	const ds = document.getElementById("Discord");
+	ds.addEventListener('mousemove', follow);
+	ds.onclick = function(){ window.open(DiscordLink) };
+
+	const sp = document.getElementById("Specifications");
+	sp.addEventListener('mousemove', follow);
+	sp.onclick = function(){ window.open(SpecificationsLink) };
+
+	/*
+	*/
+}
+
+function follow(e)
+{
+	/* moves the tooltip tp */
+	const tp = document.getElementById(e.srcElement.id + "-tooltip");
+	tp.style.left = e.pageX - 100 + 'px';
+	tp.style.top = e.pageY - 35 + 'px';
 }
 
 /* sets e in l at index i */

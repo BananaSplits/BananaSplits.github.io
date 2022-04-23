@@ -71,7 +71,7 @@ body
 
 /*                                                             Texts                                                             */
 
-/* text wrappers */
+/* pages text wrappers */
 
 .tw
 {
@@ -85,18 +85,20 @@ body
 	/*clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%, 100% 99%, 40% 99%, 1% 79%, 1% 21%, 40% 1%, 100% 1%);*/
 	shape-outside: polygon(100% 0, 0 0, 0 100%, 100% 100%, 100% 99%, 40% 99%, 1% 79%, 1% 21%, 40% 1%, 100% 1%);
 	float: left;
+	shape-margin: calc( ( var(--width) + var(--height) ) / 20 );
 	
 }
 
 .twr
 {
 	/*clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 99%, 60% 99%, 99% 79%, 99% 21%, 60% 1%, 0 1%);*/
-	shape-outside: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 99%, 60% 99%, 99% 79%, 99% 21%, 60% 1%, 0 1%);
+	shape-outside: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
 	float: right;
-	
+	shape-margin: calc( ( var(--width) + var(--height) ) / 10 );
+
 }
 
-/* general text alignment */
+/* general text properties */
 
 .title, .content.menu
 {
@@ -109,7 +111,16 @@ body
 {
 	margin: 0;
 	font-family: "Lucida Console", "Courier New", monospace;
-	font-size: calc( var(--width) / 30 );
+	font-size: calc( ( var(--width) + var(--height) ) / 50 );
+}
+
+.page-text
+{
+	font-size: calc( ( var(--width) + var(--height) ) / 100 );
+	/*position: relative;
+	left: calc( var(--width) /20 );
+	top: calc( var(--width) /20 );
+	right: calc( var(--width) /20 );*/
 }
 
 /* The Azure Stone */
@@ -117,7 +128,7 @@ body
 #h1
 {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-	font-size: calc( var(--width) / 15 );
+	font-size: calc( ( var(--width) + var(--height) ) / 25 );
 	word-spacing: 2.4px;
 	color: #0080FF;
 	font-weight: 700;
@@ -188,6 +199,15 @@ body
 	transform: translate( calc( (1/2) * var(--width) - 50% ) , calc( (-5) * var(--marginy) ) );
 }
 
+/* pages img */
+
+.page-img
+{
+	position: absolute;
+	top: calc( var(--height) / 5 );
+	right: calc( var(--width) / 8 );
+}
+
 /*                                                             Sizes                                                             */
 
 /* actives */
@@ -243,6 +263,14 @@ body
 {
 	height: calc(var(--height)/20);
 	width: calc(var(--width)/40);
+}
+
+/* pages img */
+
+.page-img
+{
+	max-height: calc(var(--height)/2);
+	max-width: calc(var(--width)/3);
 }
 
 /*                                                             Z-indexes                                                             */

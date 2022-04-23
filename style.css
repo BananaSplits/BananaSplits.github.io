@@ -76,16 +76,16 @@ body
 
 .tw
 {
-	height:	100%;
-	width: 50%;
+	/*height:	100%;
+	width: 50%;*/
 	
 }
 
 .twl
 {
 	/*clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%, 100% 99%, 40% 99%, 1% 79%, 1% 21%, 40% 1%, 100% 1%);*/
-	shape-outside: polygon(100% 100%, 0 100%, 0 0, 100% 0, 100% 30%, 20% 30%, 20% 70%, 100% 70%);
-	float: left;
+	/*shape-outside: polygon(100% 100%, 0 100%, 0 0, 100% 0, 100% 30%, 20% 30%, 20% 70%, 100% 70%);
+	float: left;*/
 	/*shape-margin: calc( ( var(--width) + var(--height) ) / 20 );*/
 	
 }
@@ -93,9 +93,9 @@ body
 .twr
 {
 	/*clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 99%, 60% 99%, 99% 79%, 99% 21%, 60% 1%, 0 1%);*/
-	shape-outside: polygon(0 0, 100% 0%, 100% 100%, 0 100%);
+	/*shape-outside: polygon(0 0, 100% 0%, 100% 100%, 0 100%);
 	float: right;
-	shape-margin: calc( ( var(--width) + var(--height) ) / 10 );
+	shape-margin: calc( ( var(--width) + var(--height) ) / 10 );*/
 
 }
 
@@ -118,6 +118,13 @@ body
 .page-text
 {
 	font-size: calc( ( var(--width) + var(--height) ) / 100 );
+	/*border: 1px solid black;*/
+	overflow: auto;
+	height: 80%;
+	width: 40%;
+	left: 10%;
+	top: 6%;
+	position: relative;
 	/*position: relative;
 	left: calc( var(--width) /20 );
 	top: calc( var(--width) /20 );
@@ -205,8 +212,8 @@ body
 .page-img
 {
 	position: absolute;
-	top: calc( var(--height) / 5 );
-	right: calc( var(--width) / 10 );
+	top: calc( var(--height) / 4 );
+	right: calc( var(--width) / 12 );
 }
 
 /*                                                             Sizes                                                             */

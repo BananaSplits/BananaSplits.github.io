@@ -42,7 +42,8 @@ body
 
 	background-image: url("https://foodtank.com/wp-content/uploads/2020/04/COVID-19-Relief_Small-Farms-.jpg");
 	background-repeat: no-repeat;
-	background-size: 100vw;
+	background-size: cover;
+	background-attachment: fixed;
 
 	/*                                                                  */
 

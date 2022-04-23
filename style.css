@@ -78,22 +78,22 @@ body
 {
 	height:	100%;
 	width: 50%;
-	/*background-color: black;*/
+	
 }
 
 .twl
 {
 	/*clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%, 100% 99%, 40% 99%, 1% 79%, 1% 21%, 40% 1%, 100% 1%);*/
-	shape-outside: polygon(100% 0, 0 0, 0 100%, 100% 100%, 100% 99%, 40% 99%, 1% 79%, 1% 21%, 40% 1%, 100% 1%);
+	shape-outside: polygon(100% 100%, 0 100%, 0 0, 100% 0, 100% 30%, 20% 30%, 20% 70%, 100% 70%);
 	float: left;
-	shape-margin: calc( ( var(--width) + var(--height) ) / 20 );
+	/*shape-margin: calc( ( var(--width) + var(--height) ) / 20 );*/
 	
 }
 
 .twr
 {
 	/*clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 99%, 60% 99%, 99% 79%, 99% 21%, 60% 1%, 0 1%);*/
-	shape-outside: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+	shape-outside: polygon(0 0, 100% 0%, 100% 100%, 0 100%);
 	float: right;
 	shape-margin: calc( ( var(--width) + var(--height) ) / 10 );
 
@@ -206,7 +206,7 @@ body
 {
 	position: absolute;
 	top: calc( var(--height) / 5 );
-	right: calc( var(--width) / 8 );
+	right: calc( var(--width) / 10 );
 }
 
 /*                                                             Sizes                                                             */

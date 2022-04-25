@@ -48,7 +48,7 @@
 #Staff-content div img
 {
 	max-width: 40%;
-	max-width: 150px;
+	max-height: 150px;
 	position: absolute;
 	right: 0;
 	top: 0;

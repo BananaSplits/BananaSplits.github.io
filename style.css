@@ -6,18 +6,22 @@
 	--width: 100vw;
 	--height: 100vh;
 
-	--active: 1.1;
+	--active: 1;
 	--active-outline: 1.13;
 	
-	--sub: 0.8;
+	--sub: 0.7;
 	--sub-outline: 0.83;
 	
-	--page: 0.9;
+	--page: 1;
 	--page-outline: 0.93;
 	
-	--marginy: calc((1/50)*var(--height));
-	--marginx: calc((1/50)*var(--width));
+	--marginy: calc((3/50)*var(--height));
+	--marginx: calc((3/50)*var(--width));
 
+}
+
+.outline {
+	visibility: hidden !important;
 }
 
 /*                                                             CUSTOM                                                             
@@ -30,13 +34,13 @@
 	position: absolute;
 	border: 5px dotted black;
 
-	width: 30%;
-	height: 30%;
+	width: 25%;
+	height: 25%;
 }
 
 #Staff-content div p
 {
-	font-family: "Lucida Console", "Courier New", monospace;
+	font-family: "Duality", monospace;
 	font-size: calc( ( var(--width) + var(--height) ) / 150 );
 	
 	position: absolute;
@@ -47,32 +51,64 @@
 
 #Staff-content div img
 {
-	max-width: 50%;
-	max-height: 100%;
+	max-width: 80%;
+	max-height: 130%;
 	position: absolute;
-	right: 0;
-	top: 0;
 }
 
 #Adrien
 {
-	left: 15%;
+	left: 18%;
 	top: 15%;
+}
+#Adrien-img
+{
+	right: calc( (-1/50) * var(--width) );
+	top: calc( (-2/50) * var(--height) );
+}
+#Adrien-p
+{
 }
 #Jules
 {
-	left: 55%;
+	left: 57%;
 	top: 15%;
+}
+#Jules-img
+{
+	right: calc( (8/50) * var(--width) );
+	top: calc( (-2/50) * var(--height) );
+}
+#Jules-p
+{
+	left: 35%;
 }
 #Amine
 {
-	left: 15%;
+	left: 18%;
 	top: 55%;
+}
+#Amine-img
+{
+	right: calc( (-1/50) * var(--width) );
+	top: calc( (-2/50) * var(--height) );
+}
+#Amine-p
+{
 }
 #Bob
 {
-	left: 55%;
+	left: 57%;
 	top: 55%;
+}
+#Bob-img
+{
+	right: calc( (8/50) * var(--width) );
+	top: calc( (-2/50) * var(--height) );
+}
+#Bob-p
+{
+	left: 35%;
 }
 
 #Download:hover, #Discord:hover, #Specifications:hover
@@ -101,6 +137,17 @@
 #History-outline, #History, #History-title, #History-content
 {
 	visibility: hidden;
+}
+
+@font-face
+{
+	font-family: Western;
+	src: url("assets/CarnevaleeFreakshow.ttf");
+}
+@font-face
+{
+	font-family: Duality;
+	src: url("assets/duality.ttf");
 }
 
 /*
@@ -201,19 +248,20 @@ body
 .title p, .content.menu p
 {
 	margin: 0;
-	font-family: "Lucida Console", "Courier New", monospace;
-	font-size: calc( ( var(--width) + var(--height) ) / 50 );
+	font-family: "Western", monospace;
+	font-size: calc( ( var(--width) + var(--height) ) / 40 );
 }
 
 .page-text
 {
+	font-family: "Duality", sans-serif;
 	font-size: calc( ( var(--width) + var(--height) ) / 100 );
 	/*border: 1px solid black;*/
 	overflow: auto;
 	height: 80%;
 	width: 40%;
 	left: 13%;
-	top: 8%;
+	top: 25%;
 	position: relative;
 	/*position: relative;
 	left: calc( var(--width) /20 );
@@ -225,12 +273,13 @@ body
 
 #h1
 {
-	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-family: "Duality", sans-serif;
 	font-size: calc( ( var(--width) + var(--height) ) / 25 );
 	word-spacing: 2.4px;
-	color: #0080FF;
-	font-weight: 700;
-	text-decoration: none solid rgb(232, 230, 227);
+	letter-spacing: 5px;
+	color: #292D53;
+	font-weight: 1;
+	text-decoration: underline overline solid rgb(82, 48, 38);
 	font-style: normal;
 	font-variant: small-caps;
 	text-transform: none;
@@ -286,15 +335,13 @@ body
 #back-button
 {
 	position: fixed;
-	top: -75px;
-	left: -75px;
 }
 
 /* pages titles */
 
 .title.page.active
 {
-	transform: translate( calc( (1/2) * var(--width) - 50% ) , calc( (-5) * var(--marginy) ) );
+	transform: translate( calc( (1/2) * var(--width) - 50% ) , calc( (0) * var(--marginy) ) );
 }
 
 /* pages img */
@@ -304,6 +351,19 @@ body
 	position: absolute;
 	top: calc( var(--height) / 4 );
 	right: calc( var(--width) / 12 );
+}
+
+#h1
+{
+	transform: 	translate(0, calc( (-1/8) * var(--height	) )	);
+}
+
+#patchNote-img
+{
+	width: 27%;
+	height: auto;
+	top: 40%;
+	right: 15%;
 }
 
 /*                                                             Sizes                                                             */
@@ -366,8 +426,8 @@ body
 
 #back-button
 {
-	min-height: 150px;
-	min-width: 150px;
+	width: 200px;
+	height: 100px;
 }
 
 /* pages img */
@@ -436,18 +496,23 @@ body
 	z-index: 0;
 }
 
+#back-button
+{
+	z-index: 100;
+}
+
 /*                                                             Shapes and Colors                                                             */
 
 /*           all           */
 
 .all:not(.page.active)
 {
-	clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+	/*clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);*/
 }
 
 .page.active
 {
-	clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+	/*clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);*/
 }
 
 .outline
@@ -460,17 +525,19 @@ body
 {
 	/* default color*/
 	/*of all diamonds */
-	background-color: black;
+	background-color: transparent;
+	content: url("assets/menu.png");
 }
 
-/*           level 0           */
+
+/*           level 0           *//*
 
 #root
 {
 	background-color: #2C5437;
 }
 
-/*           level 1           */
+/*           level 1           *//*
 
 #Updates
 {
@@ -491,7 +558,8 @@ body
 
 /*           level 2           */
 
-/*Updates subs*/
+/*Updates subs*//*
+
 #UpComing
 {
 	background-color: #A06E4B;
@@ -504,7 +572,7 @@ body
 {
 	background-color: #915BA0;
 }
-/*Presentation subs*/
+/*Presentation subs*//*
 #Specifications
 {
 	background-color: #A09450;
@@ -517,7 +585,7 @@ body
 {
 	background-color: #9BA097;
 }
-/*Download subs*/
+/*Download subs*//*
 #Mac
 {
 	background-color: #A09797;
@@ -530,7 +598,7 @@ body
 {
 	background-color: #A05B5D;
 }
-/*AboutUs subs*/
+/*AboutUs subs*//*
 #Community
 {
 	background-color: #A04E4E;
@@ -549,7 +617,7 @@ body
 .h1-fadeOut
 {
 	opacity: 0;
-	letter-spacing: 20px;
+	letter-spacing: 30px !important	;
 }
 
 .h1-fadeIn
@@ -569,7 +637,6 @@ body
 {
 	background-image: url("assets/backArrow.png");
 	background-size: cover;
-	border-radius: 50%;
 }
 
 .back-button-off
@@ -588,6 +655,12 @@ body
 .content.active.on .page-text
 {
 	overflow: hidden;
+}
+
+#back-button
+{
+	border: none;
+	background-color: transparent;
 }
 
 /*                                                             Transitions                                                             */

@@ -258,16 +258,27 @@ body
 	font-size: calc( ( var(--width) + var(--height) ) / 100 );
 	/*border: 1px solid black;*/
 	overflow: auto;
-	height: 80%;
+	height: 50%;
 	width: 40%;
 	left: 13%;
-	top: 25%;
+	top: 23%;
 	position: relative;
 	/*position: relative;
 	left: calc( var(--width) /20 );
 	top: calc( var(--width) /20 );
 	right: calc( var(--width) /20 );*/
 }
+.page-text::-webkit-scrollbar
+{
+	width: 4px;
+	height: 100%;
+	background-color: sandybrown;
+}
+.page-text::-webkit-scrollbar-thumb
+{
+	background-color: #3A160E;
+}
+
 
 /* The Azure Stone */
 

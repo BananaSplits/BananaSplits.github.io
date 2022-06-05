@@ -327,7 +327,7 @@ body
 	font-size: calc( ( var(--width) + var(--height) ) / 25 );
 	word-spacing: 2.4px;
 	letter-spacing: 5px;
-	color: #292D53;
+	color: rgb(143 72 0);
 	font-weight: 1;
 	text-decoration: underline overline solid rgb(82, 48, 38);
 	font-style: normal;

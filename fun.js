@@ -98,7 +98,7 @@ window.onload = function main()
 	/*                                                              CUSTOM
 	*/
 
-	const WindowsDownloadLink = "";
+	const WindowsDownloadLink = "https://download.wetransfer.com/eugv/13b5e6f9d02db263f5373035770c0bce20220605224835/54b3caa3cb6ae86a2dbbe2ddd76aec6d7be0f499/TheAzureStoneInstaller.exe?token=eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTQ0Njk4MzEsImV4cCI6MTY1NDQ3MDQzMSwidW5pcXVlIjoiMTNiNWU2ZjlkMDJkYjI2M2Y1MzczMDM1NzcwYzBiY2UyMDIyMDYwNTIyNDgzNSIsImZpbGVuYW1lIjoiVGhlQXp1cmVTdG9uZUluc3RhbGxlci5leGUiLCJ3YXliaWxsX3VybCI6Imh0dHA6Ly9zdG9ybS1pbnRlcm5hbC5zZXJ2aWNlLmV1LXdlc3QtMS53ZXRyYW5zZmVyLm5ldC9hcGkvd2F5YmlsbHM_c2lnbmVkX3dheWJpbGxfaWQ9ZXlKZmNtRnBiSE1pT25zaWJXVnpjMkZuWlNJNklrSkJhSE5MZDJodk5HeE9Za0ZSUVQwaUxDSmxlSEFpT2lJeU1ESXlMVEEyTFRBMlZEQXdPakEzT2pFeExqQXdNRm9pTENKd2RYSWlPaUozWVhsaWFXeHNYMmxrSW4xOS0tYjRjN2U5MGYzMjE3MzkwNGIwYmNjZDQ4NzJiYzlhNDcxMzVjYjkwYThlZTYzNzg1MDM0YWMxMjEyNmEyNzg1NSIsImZpbmdlcnByaW50IjoiNTRiM2NhYTNjYjZhZTg2YTJkYmJlMmRkZDc2YWVjNmQ3YmUwZjQ5OSIsImNhbGxiYWNrIjoie1wiZm9ybWRhdGFcIjp7XCJhY3Rpb25cIjpcImh0dHA6Ly9mcm9udGVuZC5zZXJ2aWNlLmV1LXdlc3QtMS53ZXRyYW5zZmVyLm5ldC93ZWJob29rcy9iYWNrZW5kXCJ9LFwiZm9ybVwiOntcInRyYW5zZmVyX2lkXCI6XCIxM2I1ZTZmOWQwMmRiMjYzZjUzNzMwMzU3NzBjMGJjZTIwMjIwNjA1MjI0ODM1XCIsXCJkb3dubG9hZF9pZFwiOjE1NDU3OTY3Nzc5fX0ifQ.byZIuq82UZ2iT36-VZOnTZIwby01HUXUhSZo5wOtRU4&cf=y";
 	const DiscordLink = "";
 	const SpecificationsLink = "https://cdn.discordapp.com/attachments/934591453718544404/937795269616087070/Cahier_des_charges_V2.pdf";
 
